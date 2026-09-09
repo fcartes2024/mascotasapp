@@ -1,4 +1,4 @@
-import Database from 'better-sqlite3'
+import { DatabaseSync } from 'node:sqlite'
 import { existsSync, mkdirSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -11,9 +11,9 @@ if (!existsSync(DB_DIR)) {
   mkdirSync(DB_DIR, { recursive: true })
 }
 
-export const db = new Database(DB_PATH)
-db.pragma('journal_mode = WAL')
-db.pragma('foreign_keys = ON')
+export const db = new DatabaseSync(DB_PATH)
+db.exec('PRAGMA journal_mode = WAL')
+db.exec('PRAGMA foreign_keys = ON')
 
 type TableInfo = { name: string }
 
