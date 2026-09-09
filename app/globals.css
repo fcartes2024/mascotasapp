@@ -1,0 +1,46 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: 'Geist', 'Geist Fallback';
+  --font-serif: 'DM Serif Display', 'Georgia', serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+  --radius-3xl: 2.5rem;
+}
+
+:root {
+  color-scheme: light;
+  --background: oklch(0.975 0.01 90);
+  --foreground: oklch(0.24 0.025 155);
+  --card: oklch(0.99 0.008 90);
+  --card-foreground: oklch(0.24 0.025 155);
+  --primary: oklch(0.24 0.025 155);
+  --primary-foreground: oklch(0.99 0.008 90);
+  --muted-foreground: oklch(0.49 0.025 155);
+  --border: oklch(0.89 0.02 150);
+  --radius: 0.75rem;
+}
+
+* { @apply border-border; }
+html { background: #f8f6f1; scroll-behavior: smooth; }
+body { @apply bg-background text-foreground font-sans; margin: 0; }
+button, a { -webkit-tap-highlight-color: transparent; }
+::selection { background: #e56c4c; color: #fffaf5; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}

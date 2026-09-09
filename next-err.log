@@ -1,0 +1,2249 @@
+⚠ Blocked cross-origin request to Next.js dev resource /_next/static/chunks/_10x7hqp._.js from "10.123.119.202".
+Cross-origin access to Next.js dev resources is blocked by default for safety.
+
+To allow this host in development, add it to "allowedDevOrigins" in next.config.js and restart the dev server:
+
+// next.config.js
+module.exports = {
+  allowedDevOrigins: ['10.123.119.202'],
+}
+
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+⚠ Blocked cross-origin request to Next.js dev resource /_next/static/chunks/app_page_tsx_1s_43kl._.js from "10.123.119.202".
+Cross-origin access to Next.js dev resources is blocked by default for safety.
+
+To allow this host in development, add it to "allowedDevOrigins" in next.config.js and restart the dev server:
+
+// next.config.js
+module.exports = {
+  allowedDevOrigins: ['10.123.119.202'],
+}
+
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+⚠ Blocked cross-origin request to Next.js dev resource /_next/static/chunks/node_modules_0qxpo38._.js from "10.123.119.202".
+Cross-origin access to Next.js dev resources is blocked by default for safety.
+
+To allow this host in development, add it to "allowedDevOrigins" in next.config.js and restart the dev server:
+
+// next.config.js
+module.exports = {
+  allowedDevOrigins: ['10.123.119.202'],
+}
+
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+⚠ Blocked cross-origin request to Next.js dev resource /_next/hmr from "10.123.119.202".
+Cross-origin access to Next.js dev resources is blocked by default for safety.
+
+To allow this host in development, add it to "allowedDevOrigins" in next.config.js and restart the dev server:
+
+// next.config.js
+module.exports = {
+  allowedDevOrigins: ['10.123.119.202'],
+}
+
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+⨯ ./app/page.tsx:38:1
+Error: Module not found: Can't resolve '@/components/home/HelpModal'
+  [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+[31m[1m>[0m [90m38 |[0m [36mimport[0m [33mHelpModal[0m [36mfrom[0m [32m'@/components/home/HelpModal'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m39 |[0m
+  [90m40 |[0m [36mtype[0m [33mPet[0m = {
+  [90m41 |[0m   id?: number
+
+Import map: aliased to relative './components/home/HelpModal' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:38:1
+Error: Module not found: Can't resolve '@/components/home/HelpModal'
+  [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+[31m[1m>[0m [90m38 |[0m [36mimport[0m [33mHelpModal[0m [36mfrom[0m [32m'@/components/home/HelpModal'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m39 |[0m
+  [90m40 |[0m [36mtype[0m [33mPet[0m = {
+  [90m41 |[0m   id?: number
+
+Import map: aliased to relative './components/home/HelpModal' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:38:1
+Error: Module not found: Can't resolve '@/components/home/HelpModal'
+  [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+[31m[1m>[0m [90m38 |[0m [36mimport[0m [33mHelpModal[0m [36mfrom[0m [32m'@/components/home/HelpModal'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m39 |[0m
+  [90m40 |[0m [36mtype[0m [33mPet[0m = {
+  [90m41 |[0m   id?: number
+
+Import map: aliased to relative './components/home/HelpModal' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:38:1
+Error: Module not found: Can't resolve '@/components/home/HelpModal'
+  [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+[31m[1m>[0m [90m38 |[0m [36mimport[0m [33mHelpModal[0m [36mfrom[0m [32m'@/components/home/HelpModal'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m39 |[0m
+  [90m40 |[0m [36mtype[0m [33mPet[0m = {
+  [90m41 |[0m   id?: number
+
+Import map: aliased to relative './components/home/HelpModal' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:36:1
+Error: Module not found: Can't resolve '@/components/panels/PanelAdmin'
+  [90m34 |[0m [36mimport[0m [33mPanelUsuario[0m [36mfrom[0m [32m'@/components/panels/PanelUsuario'[0m
+  [90m35 |[0m [36mimport[0m [33mPanelFundacion[0m [36mfrom[0m [32m'@/components/panels/PanelFundacion'[0m
+[31m[1m>[0m [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+  [90m38 |[0m [36mimport[0m [33mHelpModal[0m [36mfrom[0m [32m'@/components/home/HelpModal'[0m
+  [90m39 |[0m
+
+Import map: aliased to relative './components/panels/PanelAdmin' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:36:1
+Error: Module not found: Can't resolve '@/components/panels/PanelAdmin'
+  [90m34 |[0m [36mimport[0m [33mPanelUsuario[0m [36mfrom[0m [32m'@/components/panels/PanelUsuario'[0m
+  [90m35 |[0m [36mimport[0m [33mPanelFundacion[0m [36mfrom[0m [32m'@/components/panels/PanelFundacion'[0m
+[31m[1m>[0m [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+  [90m38 |[0m [36mimport[0m [33mHelpModal[0m [36mfrom[0m [32m'@/components/home/HelpModal'[0m
+  [90m39 |[0m
+
+Import map: aliased to relative './components/panels/PanelAdmin' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:36:1
+Error: Module not found: Can't resolve '@/components/panels/PanelAdmin'
+  [90m34 |[0m [36mimport[0m [33mPanelUsuario[0m [36mfrom[0m [32m'@/components/panels/PanelUsuario'[0m
+  [90m35 |[0m [36mimport[0m [33mPanelFundacion[0m [36mfrom[0m [32m'@/components/panels/PanelFundacion'[0m
+[31m[1m>[0m [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+  [90m38 |[0m [36mimport[0m [33mHelpModal[0m [36mfrom[0m [32m'@/components/home/HelpModal'[0m
+  [90m39 |[0m
+
+Import map: aliased to relative './components/panels/PanelAdmin' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:36:1
+Error: Module not found: Can't resolve '@/components/panels/PanelAdmin'
+  [90m34 |[0m [36mimport[0m [33mPanelUsuario[0m [36mfrom[0m [32m'@/components/panels/PanelUsuario'[0m
+  [90m35 |[0m [36mimport[0m [33mPanelFundacion[0m [36mfrom[0m [32m'@/components/panels/PanelFundacion'[0m
+[31m[1m>[0m [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+  [90m38 |[0m [36mimport[0m [33mHelpModal[0m [36mfrom[0m [32m'@/components/home/HelpModal'[0m
+  [90m39 |[0m
+
+Import map: aliased to relative './components/panels/PanelAdmin' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:35:1
+Error: Module not found: Can't resolve '@/components/panels/PanelFundacion'
+  [90m33 |[0m [36mimport[0m { useAuth, roleLabels, roleBadge, safeRole, [36mtype[0m [33mUserRole[0m } [36mfrom[0m [32m'@/components/prov...[0m
+  [90m34 |[0m [36mimport[0m [33mPanelUsuario[0m [36mfrom[0m [32m'@/components/panels/PanelUsuario'[0m
+[31m[1m>[0m [90m35 |[0m [36mimport[0m [33mPanelFundacion[0m [36mfrom[0m [32m'@/components/panels/PanelFundacion'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+  [90m38 |[0m [36mimport[0m [33mHelpModal[0m [36mfrom[0m [32m'@/components/home/HelpModal'[0m
+
+Import map: aliased to relative './components/panels/PanelFundacion' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:35:1
+Error: Module not found: Can't resolve '@/components/panels/PanelFundacion'
+  [90m33 |[0m [36mimport[0m { useAuth, roleLabels, roleBadge, safeRole, [36mtype[0m [33mUserRole[0m } [36mfrom[0m [32m'@/components/prov...[0m
+  [90m34 |[0m [36mimport[0m [33mPanelUsuario[0m [36mfrom[0m [32m'@/components/panels/PanelUsuario'[0m
+[31m[1m>[0m [90m35 |[0m [36mimport[0m [33mPanelFundacion[0m [36mfrom[0m [32m'@/components/panels/PanelFundacion'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+  [90m38 |[0m [36mimport[0m [33mHelpModal[0m [36mfrom[0m [32m'@/components/home/HelpModal'[0m
+
+Import map: aliased to relative './components/panels/PanelFundacion' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:35:1
+Error: Module not found: Can't resolve '@/components/panels/PanelFundacion'
+  [90m33 |[0m [36mimport[0m { useAuth, roleLabels, roleBadge, safeRole, [36mtype[0m [33mUserRole[0m } [36mfrom[0m [32m'@/components/prov...[0m
+  [90m34 |[0m [36mimport[0m [33mPanelUsuario[0m [36mfrom[0m [32m'@/components/panels/PanelUsuario'[0m
+[31m[1m>[0m [90m35 |[0m [36mimport[0m [33mPanelFundacion[0m [36mfrom[0m [32m'@/components/panels/PanelFundacion'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+  [90m38 |[0m [36mimport[0m [33mHelpModal[0m [36mfrom[0m [32m'@/components/home/HelpModal'[0m
+
+Import map: aliased to relative './components/panels/PanelFundacion' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:35:1
+Error: Module not found: Can't resolve '@/components/panels/PanelFundacion'
+  [90m33 |[0m [36mimport[0m { useAuth, roleLabels, roleBadge, safeRole, [36mtype[0m [33mUserRole[0m } [36mfrom[0m [32m'@/components/prov...[0m
+  [90m34 |[0m [36mimport[0m [33mPanelUsuario[0m [36mfrom[0m [32m'@/components/panels/PanelUsuario'[0m
+[31m[1m>[0m [90m35 |[0m [36mimport[0m [33mPanelFundacion[0m [36mfrom[0m [32m'@/components/panels/PanelFundacion'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+  [90m38 |[0m [36mimport[0m [33mHelpModal[0m [36mfrom[0m [32m'@/components/home/HelpModal'[0m
+
+Import map: aliased to relative './components/panels/PanelFundacion' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:34:1
+Error: Module not found: Can't resolve '@/components/panels/PanelUsuario'
+  [90m32 |[0m } [36mfrom[0m [32m'lucide-react'[0m
+  [90m33 |[0m [36mimport[0m { useAuth, roleLabels, roleBadge, safeRole, [36mtype[0m [33mUserRole[0m } [36mfrom[0m [32m'@/components/prov...[0m
+[31m[1m>[0m [90m34 |[0m [36mimport[0m [33mPanelUsuario[0m [36mfrom[0m [32m'@/components/panels/PanelUsuario'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m35 |[0m [36mimport[0m [33mPanelFundacion[0m [36mfrom[0m [32m'@/components/panels/PanelFundacion'[0m
+  [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+
+Import map: aliased to relative './components/panels/PanelUsuario' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:34:1
+Error: Module not found: Can't resolve '@/components/panels/PanelUsuario'
+  [90m32 |[0m } [36mfrom[0m [32m'lucide-react'[0m
+  [90m33 |[0m [36mimport[0m { useAuth, roleLabels, roleBadge, safeRole, [36mtype[0m [33mUserRole[0m } [36mfrom[0m [32m'@/components/prov...[0m
+[31m[1m>[0m [90m34 |[0m [36mimport[0m [33mPanelUsuario[0m [36mfrom[0m [32m'@/components/panels/PanelUsuario'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m35 |[0m [36mimport[0m [33mPanelFundacion[0m [36mfrom[0m [32m'@/components/panels/PanelFundacion'[0m
+  [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+
+Import map: aliased to relative './components/panels/PanelUsuario' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:34:1
+Error: Module not found: Can't resolve '@/components/panels/PanelUsuario'
+  [90m32 |[0m } [36mfrom[0m [32m'lucide-react'[0m
+  [90m33 |[0m [36mimport[0m { useAuth, roleLabels, roleBadge, safeRole, [36mtype[0m [33mUserRole[0m } [36mfrom[0m [32m'@/components/prov...[0m
+[31m[1m>[0m [90m34 |[0m [36mimport[0m [33mPanelUsuario[0m [36mfrom[0m [32m'@/components/panels/PanelUsuario'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m35 |[0m [36mimport[0m [33mPanelFundacion[0m [36mfrom[0m [32m'@/components/panels/PanelFundacion'[0m
+  [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+
+Import map: aliased to relative './components/panels/PanelUsuario' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:34:1
+Error: Module not found: Can't resolve '@/components/panels/PanelUsuario'
+  [90m32 |[0m } [36mfrom[0m [32m'lucide-react'[0m
+  [90m33 |[0m [36mimport[0m { useAuth, roleLabels, roleBadge, safeRole, [36mtype[0m [33mUserRole[0m } [36mfrom[0m [32m'@/components/prov...[0m
+[31m[1m>[0m [90m34 |[0m [36mimport[0m [33mPanelUsuario[0m [36mfrom[0m [32m'@/components/panels/PanelUsuario'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m35 |[0m [36mimport[0m [33mPanelFundacion[0m [36mfrom[0m [32m'@/components/panels/PanelFundacion'[0m
+  [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+
+Import map: aliased to relative './components/panels/PanelUsuario' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:37:1
+Error: Module not found: Can't resolve '@/components/pets/PetFilterModal'
+  [90m35 |[0m [36mimport[0m [33mPanelFundacion[0m [36mfrom[0m [32m'@/components/panels/PanelFundacion'[0m
+  [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+[31m[1m>[0m [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m38 |[0m [36mimport[0m [33mHelpModal[0m [36mfrom[0m [32m'@/components/home/HelpModal'[0m
+  [90m39 |[0m
+  [90m40 |[0m [36mtype[0m [33mPet[0m = {
+
+Import map: aliased to relative './components/pets/PetFilterModal' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:37:1
+Error: Module not found: Can't resolve '@/components/pets/PetFilterModal'
+  [90m35 |[0m [36mimport[0m [33mPanelFundacion[0m [36mfrom[0m [32m'@/components/panels/PanelFundacion'[0m
+  [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+[31m[1m>[0m [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m38 |[0m [36mimport[0m [33mHelpModal[0m [36mfrom[0m [32m'@/components/home/HelpModal'[0m
+  [90m39 |[0m
+  [90m40 |[0m [36mtype[0m [33mPet[0m = {
+
+Import map: aliased to relative './components/pets/PetFilterModal' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:37:1
+Error: Module not found: Can't resolve '@/components/pets/PetFilterModal'
+  [90m35 |[0m [36mimport[0m [33mPanelFundacion[0m [36mfrom[0m [32m'@/components/panels/PanelFundacion'[0m
+  [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+[31m[1m>[0m [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m38 |[0m [36mimport[0m [33mHelpModal[0m [36mfrom[0m [32m'@/components/home/HelpModal'[0m
+  [90m39 |[0m
+  [90m40 |[0m [36mtype[0m [33mPet[0m = {
+
+Import map: aliased to relative './components/pets/PetFilterModal' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:37:1
+Error: Module not found: Can't resolve '@/components/pets/PetFilterModal'
+  [90m35 |[0m [36mimport[0m [33mPanelFundacion[0m [36mfrom[0m [32m'@/components/panels/PanelFundacion'[0m
+  [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+[31m[1m>[0m [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m38 |[0m [36mimport[0m [33mHelpModal[0m [36mfrom[0m [32m'@/components/home/HelpModal'[0m
+  [90m39 |[0m
+  [90m40 |[0m [36mtype[0m [33mPet[0m = {
+
+Import map: aliased to relative './components/pets/PetFilterModal' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:38:1
+Error: Module not found: Can't resolve '@/components/home/HelpModal'
+  [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+[31m[1m>[0m [90m38 |[0m [36mimport[0m [33mHelpModal[0m [36mfrom[0m [32m'@/components/home/HelpModal'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m39 |[0m
+  [90m40 |[0m [36mtype[0m [33mPet[0m = {
+  [90m41 |[0m   id?: number
+
+Import map: aliased to relative './components/home/HelpModal' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:38:1
+Error: Module not found: Can't resolve '@/components/home/HelpModal'
+  [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+[31m[1m>[0m [90m38 |[0m [36mimport[0m [33mHelpModal[0m [36mfrom[0m [32m'@/components/home/HelpModal'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m39 |[0m
+  [90m40 |[0m [36mtype[0m [33mPet[0m = {
+  [90m41 |[0m   id?: number
+
+Import map: aliased to relative './components/home/HelpModal' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:38:1
+Error: Module not found: Can't resolve '@/components/home/HelpModal'
+  [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+[31m[1m>[0m [90m38 |[0m [36mimport[0m [33mHelpModal[0m [36mfrom[0m [32m'@/components/home/HelpModal'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m39 |[0m
+  [90m40 |[0m [36mtype[0m [33mPet[0m = {
+  [90m41 |[0m   id?: number
+
+Import map: aliased to relative './components/home/HelpModal' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:38:1
+Error: Module not found: Can't resolve '@/components/home/HelpModal'
+  [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+[31m[1m>[0m [90m38 |[0m [36mimport[0m [33mHelpModal[0m [36mfrom[0m [32m'@/components/home/HelpModal'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m39 |[0m
+  [90m40 |[0m [36mtype[0m [33mPet[0m = {
+  [90m41 |[0m   id?: number
+
+Import map: aliased to relative './components/home/HelpModal' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:36:1
+Error: Module not found: Can't resolve '@/components/panels/PanelAdmin'
+  [90m34 |[0m [36mimport[0m [33mPanelUsuario[0m [36mfrom[0m [32m'@/components/panels/PanelUsuario'[0m
+  [90m35 |[0m [36mimport[0m [33mPanelFundacion[0m [36mfrom[0m [32m'@/components/panels/PanelFundacion'[0m
+[31m[1m>[0m [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+  [90m38 |[0m [36mimport[0m [33mHelpModal[0m [36mfrom[0m [32m'@/components/home/HelpModal'[0m
+  [90m39 |[0m
+
+Import map: aliased to relative './components/panels/PanelAdmin' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:36:1
+Error: Module not found: Can't resolve '@/components/panels/PanelAdmin'
+  [90m34 |[0m [36mimport[0m [33mPanelUsuario[0m [36mfrom[0m [32m'@/components/panels/PanelUsuario'[0m
+  [90m35 |[0m [36mimport[0m [33mPanelFundacion[0m [36mfrom[0m [32m'@/components/panels/PanelFundacion'[0m
+[31m[1m>[0m [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+  [90m38 |[0m [36mimport[0m [33mHelpModal[0m [36mfrom[0m [32m'@/components/home/HelpModal'[0m
+  [90m39 |[0m
+
+Import map: aliased to relative './components/panels/PanelAdmin' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:36:1
+Error: Module not found: Can't resolve '@/components/panels/PanelAdmin'
+  [90m34 |[0m [36mimport[0m [33mPanelUsuario[0m [36mfrom[0m [32m'@/components/panels/PanelUsuario'[0m
+  [90m35 |[0m [36mimport[0m [33mPanelFundacion[0m [36mfrom[0m [32m'@/components/panels/PanelFundacion'[0m
+[31m[1m>[0m [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+  [90m38 |[0m [36mimport[0m [33mHelpModal[0m [36mfrom[0m [32m'@/components/home/HelpModal'[0m
+  [90m39 |[0m
+
+Import map: aliased to relative './components/panels/PanelAdmin' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:36:1
+Error: Module not found: Can't resolve '@/components/panels/PanelAdmin'
+  [90m34 |[0m [36mimport[0m [33mPanelUsuario[0m [36mfrom[0m [32m'@/components/panels/PanelUsuario'[0m
+  [90m35 |[0m [36mimport[0m [33mPanelFundacion[0m [36mfrom[0m [32m'@/components/panels/PanelFundacion'[0m
+[31m[1m>[0m [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+  [90m38 |[0m [36mimport[0m [33mHelpModal[0m [36mfrom[0m [32m'@/components/home/HelpModal'[0m
+  [90m39 |[0m
+
+Import map: aliased to relative './components/panels/PanelAdmin' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:35:1
+Error: Module not found: Can't resolve '@/components/panels/PanelFundacion'
+  [90m33 |[0m [36mimport[0m { useAuth, roleLabels, roleBadge, safeRole, [36mtype[0m [33mUserRole[0m } [36mfrom[0m [32m'@/components/prov...[0m
+  [90m34 |[0m [36mimport[0m [33mPanelUsuario[0m [36mfrom[0m [32m'@/components/panels/PanelUsuario'[0m
+[31m[1m>[0m [90m35 |[0m [36mimport[0m [33mPanelFundacion[0m [36mfrom[0m [32m'@/components/panels/PanelFundacion'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+  [90m38 |[0m [36mimport[0m [33mHelpModal[0m [36mfrom[0m [32m'@/components/home/HelpModal'[0m
+
+Import map: aliased to relative './components/panels/PanelFundacion' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:35:1
+Error: Module not found: Can't resolve '@/components/panels/PanelFundacion'
+  [90m33 |[0m [36mimport[0m { useAuth, roleLabels, roleBadge, safeRole, [36mtype[0m [33mUserRole[0m } [36mfrom[0m [32m'@/components/prov...[0m
+  [90m34 |[0m [36mimport[0m [33mPanelUsuario[0m [36mfrom[0m [32m'@/components/panels/PanelUsuario'[0m
+[31m[1m>[0m [90m35 |[0m [36mimport[0m [33mPanelFundacion[0m [36mfrom[0m [32m'@/components/panels/PanelFundacion'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+  [90m38 |[0m [36mimport[0m [33mHelpModal[0m [36mfrom[0m [32m'@/components/home/HelpModal'[0m
+
+Import map: aliased to relative './components/panels/PanelFundacion' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:35:1
+Error: Module not found: Can't resolve '@/components/panels/PanelFundacion'
+  [90m33 |[0m [36mimport[0m { useAuth, roleLabels, roleBadge, safeRole, [36mtype[0m [33mUserRole[0m } [36mfrom[0m [32m'@/components/prov...[0m
+  [90m34 |[0m [36mimport[0m [33mPanelUsuario[0m [36mfrom[0m [32m'@/components/panels/PanelUsuario'[0m
+[31m[1m>[0m [90m35 |[0m [36mimport[0m [33mPanelFundacion[0m [36mfrom[0m [32m'@/components/panels/PanelFundacion'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+  [90m38 |[0m [36mimport[0m [33mHelpModal[0m [36mfrom[0m [32m'@/components/home/HelpModal'[0m
+
+Import map: aliased to relative './components/panels/PanelFundacion' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:35:1
+Error: Module not found: Can't resolve '@/components/panels/PanelFundacion'
+  [90m33 |[0m [36mimport[0m { useAuth, roleLabels, roleBadge, safeRole, [36mtype[0m [33mUserRole[0m } [36mfrom[0m [32m'@/components/prov...[0m
+  [90m34 |[0m [36mimport[0m [33mPanelUsuario[0m [36mfrom[0m [32m'@/components/panels/PanelUsuario'[0m
+[31m[1m>[0m [90m35 |[0m [36mimport[0m [33mPanelFundacion[0m [36mfrom[0m [32m'@/components/panels/PanelFundacion'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+  [90m38 |[0m [36mimport[0m [33mHelpModal[0m [36mfrom[0m [32m'@/components/home/HelpModal'[0m
+
+Import map: aliased to relative './components/panels/PanelFundacion' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:34:1
+Error: Module not found: Can't resolve '@/components/panels/PanelUsuario'
+  [90m32 |[0m } [36mfrom[0m [32m'lucide-react'[0m
+  [90m33 |[0m [36mimport[0m { useAuth, roleLabels, roleBadge, safeRole, [36mtype[0m [33mUserRole[0m } [36mfrom[0m [32m'@/components/prov...[0m
+[31m[1m>[0m [90m34 |[0m [36mimport[0m [33mPanelUsuario[0m [36mfrom[0m [32m'@/components/panels/PanelUsuario'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m35 |[0m [36mimport[0m [33mPanelFundacion[0m [36mfrom[0m [32m'@/components/panels/PanelFundacion'[0m
+  [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+
+Import map: aliased to relative './components/panels/PanelUsuario' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:34:1
+Error: Module not found: Can't resolve '@/components/panels/PanelUsuario'
+  [90m32 |[0m } [36mfrom[0m [32m'lucide-react'[0m
+  [90m33 |[0m [36mimport[0m { useAuth, roleLabels, roleBadge, safeRole, [36mtype[0m [33mUserRole[0m } [36mfrom[0m [32m'@/components/prov...[0m
+[31m[1m>[0m [90m34 |[0m [36mimport[0m [33mPanelUsuario[0m [36mfrom[0m [32m'@/components/panels/PanelUsuario'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m35 |[0m [36mimport[0m [33mPanelFundacion[0m [36mfrom[0m [32m'@/components/panels/PanelFundacion'[0m
+  [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+
+Import map: aliased to relative './components/panels/PanelUsuario' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:34:1
+Error: Module not found: Can't resolve '@/components/panels/PanelUsuario'
+  [90m32 |[0m } [36mfrom[0m [32m'lucide-react'[0m
+  [90m33 |[0m [36mimport[0m { useAuth, roleLabels, roleBadge, safeRole, [36mtype[0m [33mUserRole[0m } [36mfrom[0m [32m'@/components/prov...[0m
+[31m[1m>[0m [90m34 |[0m [36mimport[0m [33mPanelUsuario[0m [36mfrom[0m [32m'@/components/panels/PanelUsuario'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m35 |[0m [36mimport[0m [33mPanelFundacion[0m [36mfrom[0m [32m'@/components/panels/PanelFundacion'[0m
+  [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+
+Import map: aliased to relative './components/panels/PanelUsuario' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:34:1
+Error: Module not found: Can't resolve '@/components/panels/PanelUsuario'
+  [90m32 |[0m } [36mfrom[0m [32m'lucide-react'[0m
+  [90m33 |[0m [36mimport[0m { useAuth, roleLabels, roleBadge, safeRole, [36mtype[0m [33mUserRole[0m } [36mfrom[0m [32m'@/components/prov...[0m
+[31m[1m>[0m [90m34 |[0m [36mimport[0m [33mPanelUsuario[0m [36mfrom[0m [32m'@/components/panels/PanelUsuario'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m35 |[0m [36mimport[0m [33mPanelFundacion[0m [36mfrom[0m [32m'@/components/panels/PanelFundacion'[0m
+  [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+
+Import map: aliased to relative './components/panels/PanelUsuario' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:36:1
+Error: Module not found: Can't resolve '@/components/panels/PanelAdmin'
+  [90m34 |[0m [36mimport[0m [33mPanelUsuario[0m [36mfrom[0m [32m'@/components/panels/PanelUsuario'[0m
+  [90m35 |[0m [36mimport[0m [33mPanelFundacion[0m [36mfrom[0m [32m'@/components/panels/PanelFundacion'[0m
+[31m[1m>[0m [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+  [90m38 |[0m [36mimport[0m [33mHelpModal[0m [36mfrom[0m [32m'@/components/home/HelpModal'[0m
+  [90m39 |[0m
+
+Import map: aliased to relative './components/panels/PanelAdmin' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:36:1
+Error: Module not found: Can't resolve '@/components/panels/PanelAdmin'
+  [90m34 |[0m [36mimport[0m [33mPanelUsuario[0m [36mfrom[0m [32m'@/components/panels/PanelUsuario'[0m
+  [90m35 |[0m [36mimport[0m [33mPanelFundacion[0m [36mfrom[0m [32m'@/components/panels/PanelFundacion'[0m
+[31m[1m>[0m [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+  [90m38 |[0m [36mimport[0m [33mHelpModal[0m [36mfrom[0m [32m'@/components/home/HelpModal'[0m
+  [90m39 |[0m
+
+Import map: aliased to relative './components/panels/PanelAdmin' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:36:1
+Error: Module not found: Can't resolve '@/components/panels/PanelAdmin'
+  [90m34 |[0m [36mimport[0m [33mPanelUsuario[0m [36mfrom[0m [32m'@/components/panels/PanelUsuario'[0m
+  [90m35 |[0m [36mimport[0m [33mPanelFundacion[0m [36mfrom[0m [32m'@/components/panels/PanelFundacion'[0m
+[31m[1m>[0m [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+  [90m38 |[0m [36mimport[0m [33mHelpModal[0m [36mfrom[0m [32m'@/components/home/HelpModal'[0m
+  [90m39 |[0m
+
+Import map: aliased to relative './components/panels/PanelAdmin' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:36:1
+Error: Module not found: Can't resolve '@/components/panels/PanelAdmin'
+  [90m34 |[0m [36mimport[0m [33mPanelUsuario[0m [36mfrom[0m [32m'@/components/panels/PanelUsuario'[0m
+  [90m35 |[0m [36mimport[0m [33mPanelFundacion[0m [36mfrom[0m [32m'@/components/panels/PanelFundacion'[0m
+[31m[1m>[0m [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+  [90m38 |[0m [36mimport[0m [33mHelpModal[0m [36mfrom[0m [32m'@/components/home/HelpModal'[0m
+  [90m39 |[0m
+
+Import map: aliased to relative './components/panels/PanelAdmin' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:35:1
+Error: Module not found: Can't resolve '@/components/panels/PanelFundacion'
+  [90m33 |[0m [36mimport[0m { useAuth, roleLabels, roleBadge, safeRole, [36mtype[0m [33mUserRole[0m } [36mfrom[0m [32m'@/components/prov...[0m
+  [90m34 |[0m [36mimport[0m [33mPanelUsuario[0m [36mfrom[0m [32m'@/components/panels/PanelUsuario'[0m
+[31m[1m>[0m [90m35 |[0m [36mimport[0m [33mPanelFundacion[0m [36mfrom[0m [32m'@/components/panels/PanelFundacion'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+  [90m38 |[0m [36mimport[0m [33mHelpModal[0m [36mfrom[0m [32m'@/components/home/HelpModal'[0m
+
+Import map: aliased to relative './components/panels/PanelFundacion' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:35:1
+Error: Module not found: Can't resolve '@/components/panels/PanelFundacion'
+  [90m33 |[0m [36mimport[0m { useAuth, roleLabels, roleBadge, safeRole, [36mtype[0m [33mUserRole[0m } [36mfrom[0m [32m'@/components/prov...[0m
+  [90m34 |[0m [36mimport[0m [33mPanelUsuario[0m [36mfrom[0m [32m'@/components/panels/PanelUsuario'[0m
+[31m[1m>[0m [90m35 |[0m [36mimport[0m [33mPanelFundacion[0m [36mfrom[0m [32m'@/components/panels/PanelFundacion'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+  [90m38 |[0m [36mimport[0m [33mHelpModal[0m [36mfrom[0m [32m'@/components/home/HelpModal'[0m
+
+Import map: aliased to relative './components/panels/PanelFundacion' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:35:1
+Error: Module not found: Can't resolve '@/components/panels/PanelFundacion'
+  [90m33 |[0m [36mimport[0m { useAuth, roleLabels, roleBadge, safeRole, [36mtype[0m [33mUserRole[0m } [36mfrom[0m [32m'@/components/prov...[0m
+  [90m34 |[0m [36mimport[0m [33mPanelUsuario[0m [36mfrom[0m [32m'@/components/panels/PanelUsuario'[0m
+[31m[1m>[0m [90m35 |[0m [36mimport[0m [33mPanelFundacion[0m [36mfrom[0m [32m'@/components/panels/PanelFundacion'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+  [90m38 |[0m [36mimport[0m [33mHelpModal[0m [36mfrom[0m [32m'@/components/home/HelpModal'[0m
+
+Import map: aliased to relative './components/panels/PanelFundacion' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:35:1
+Error: Module not found: Can't resolve '@/components/panels/PanelFundacion'
+  [90m33 |[0m [36mimport[0m { useAuth, roleLabels, roleBadge, safeRole, [36mtype[0m [33mUserRole[0m } [36mfrom[0m [32m'@/components/prov...[0m
+  [90m34 |[0m [36mimport[0m [33mPanelUsuario[0m [36mfrom[0m [32m'@/components/panels/PanelUsuario'[0m
+[31m[1m>[0m [90m35 |[0m [36mimport[0m [33mPanelFundacion[0m [36mfrom[0m [32m'@/components/panels/PanelFundacion'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+  [90m38 |[0m [36mimport[0m [33mHelpModal[0m [36mfrom[0m [32m'@/components/home/HelpModal'[0m
+
+Import map: aliased to relative './components/panels/PanelFundacion' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:36:1
+Error: Module not found: Can't resolve '@/components/panels/PanelAdmin'
+  [90m34 |[0m [36mimport[0m [33mPanelUsuario[0m [36mfrom[0m [32m'@/components/panels/PanelUsuario'[0m
+  [90m35 |[0m [36mimport[0m [33mPanelFundacion[0m [36mfrom[0m [32m'@/components/panels/PanelFundacion'[0m
+[31m[1m>[0m [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+  [90m38 |[0m [36mimport[0m [33mHelpModal[0m [36mfrom[0m [32m'@/components/home/HelpModal'[0m
+  [90m39 |[0m
+
+Import map: aliased to relative './components/panels/PanelAdmin' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:36:1
+Error: Module not found: Can't resolve '@/components/panels/PanelAdmin'
+  [90m34 |[0m [36mimport[0m [33mPanelUsuario[0m [36mfrom[0m [32m'@/components/panels/PanelUsuario'[0m
+  [90m35 |[0m [36mimport[0m [33mPanelFundacion[0m [36mfrom[0m [32m'@/components/panels/PanelFundacion'[0m
+[31m[1m>[0m [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+  [90m38 |[0m [36mimport[0m [33mHelpModal[0m [36mfrom[0m [32m'@/components/home/HelpModal'[0m
+  [90m39 |[0m
+
+Import map: aliased to relative './components/panels/PanelAdmin' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:36:1
+Error: Module not found: Can't resolve '@/components/panels/PanelAdmin'
+  [90m34 |[0m [36mimport[0m [33mPanelUsuario[0m [36mfrom[0m [32m'@/components/panels/PanelUsuario'[0m
+  [90m35 |[0m [36mimport[0m [33mPanelFundacion[0m [36mfrom[0m [32m'@/components/panels/PanelFundacion'[0m
+[31m[1m>[0m [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+  [90m38 |[0m [36mimport[0m [33mHelpModal[0m [36mfrom[0m [32m'@/components/home/HelpModal'[0m
+  [90m39 |[0m
+
+Import map: aliased to relative './components/panels/PanelAdmin' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:36:1
+Error: Module not found: Can't resolve '@/components/panels/PanelAdmin'
+  [90m34 |[0m [36mimport[0m [33mPanelUsuario[0m [36mfrom[0m [32m'@/components/panels/PanelUsuario'[0m
+  [90m35 |[0m [36mimport[0m [33mPanelFundacion[0m [36mfrom[0m [32m'@/components/panels/PanelFundacion'[0m
+[31m[1m>[0m [90m36 |[0m [36mimport[0m [33mPanelAdmin[0m [36mfrom[0m [32m'@/components/panels/PanelAdmin'[0m
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m37 |[0m [36mimport[0m [33mPetFilterModal[0m [36mfrom[0m [32m'@/components/pets/PetFilterModal'[0m
+  [90m38 |[0m [36mimport[0m [33mHelpModal[0m [36mfrom[0m [32m'@/components/home/HelpModal'[0m
+  [90m39 |[0m
+
+Import map: aliased to relative './components/panels/PanelAdmin' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[browser] ./components/home/HelpModal.tsx:4:1
+Error: Export Facebook doesn't exist in target module
+  2 | ...
+  3 | ...t { useState, useEffect } from 'react'
+> 4 | ...t { X, Package, HeartUsers2, Share2, Gift, Send, Facebook, MessageCircle } from 'lucide-...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ...t { cn } from '@/lib/utils'
+  6 | ...t { Label } from '@/components/ui/label'
+  7 | ...t { Input } from '@/components/ui/input'
+
+The export Facebook was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Webhook?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/home/HelpModal.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/home/HelpModal.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/home/HelpModal.tsx:4:1
+Error: Export Facebook doesn't exist in target module
+  2 | ...
+  3 | ...t { useState, useEffect } from 'react'
+> 4 | ...t { X, Package, HeartUsers2, Share2, Gift, Send, Facebook, MessageCircle } from 'lucide-...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ...t { cn } from '@/lib/utils'
+  6 | ...t { Label } from '@/components/ui/label'
+  7 | ...t { Input } from '@/components/ui/input'
+
+The export Facebook was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Webhook?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/home/HelpModal.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/home/HelpModal.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/home/HelpModal.tsx:4:1
+Error: Export HeartUsers2 doesn't exist in target module
+  2 | ...
+  3 | ...t { useState, useEffect } from 'react'
+> 4 | ...t { X, Package, HeartUsers2, Share2, Gift, Send, Facebook, MessageCircle } from 'lucide-...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ...t { cn } from '@/lib/utils'
+  6 | ...t { Label } from '@/components/ui/label'
+  7 | ...t { Input } from '@/components/ui/input'
+
+The export HeartUsers2 was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Heart?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/home/HelpModal.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/home/HelpModal.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/home/HelpModal.tsx:4:1
+Error: Export HeartUsers2 doesn't exist in target module
+  2 | ...
+  3 | ...t { useState, useEffect } from 'react'
+> 4 | ...t { X, Package, HeartUsers2, Share2, Gift, Send, Facebook, MessageCircle } from 'lucide-...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ...t { cn } from '@/lib/utils'
+  6 | ...t { Label } from '@/components/ui/label'
+  7 | ...t { Input } from '@/components/ui/input'
+
+The export HeartUsers2 was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Heart?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/home/HelpModal.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/home/HelpModal.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/home/HelpModal.tsx:4:1
+Error: Export Facebook doesn't exist in target module
+  2 | ...
+  3 | ...t { useState, useEffect } from 'react'
+> 4 | ...t { X, Package, HeartUsers2, Share2, Gift, Send, Facebook, MessageCircle } from 'lucide-...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ...t { cn } from '@/lib/utils'
+  6 | ...t { Label } from '@/components/ui/label'
+  7 | ...t { Input } from '@/components/ui/input'
+
+The export Facebook was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Webhook?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/home/HelpModal.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/home/HelpModal.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/home/HelpModal.tsx:4:1
+Error: Export Facebook doesn't exist in target module
+  2 | ...
+  3 | ...t { useState, useEffect } from 'react'
+> 4 | ...t { X, Package, HeartUsers2, Share2, Gift, Send, Facebook, MessageCircle } from 'lucide-...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ...t { cn } from '@/lib/utils'
+  6 | ...t { Label } from '@/components/ui/label'
+  7 | ...t { Input } from '@/components/ui/input'
+
+The export Facebook was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Webhook?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/home/HelpModal.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/home/HelpModal.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/home/HelpModal.tsx:4:1
+Error: Export HeartUsers2 doesn't exist in target module
+  2 | ...
+  3 | ...t { useState, useEffect } from 'react'
+> 4 | ...t { X, Package, HeartUsers2, Share2, Gift, Send, Facebook, MessageCircle } from 'lucide-...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ...t { cn } from '@/lib/utils'
+  6 | ...t { Label } from '@/components/ui/label'
+  7 | ...t { Input } from '@/components/ui/input'
+
+The export HeartUsers2 was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Heart?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/home/HelpModal.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/home/HelpModal.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/home/HelpModal.tsx:4:1
+Error: Export HeartUsers2 doesn't exist in target module
+  2 | ...
+  3 | ...t { useState, useEffect } from 'react'
+> 4 | ...t { X, Package, HeartUsers2, Share2, Gift, Send, Facebook, MessageCircle } from 'lucide-...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ...t { cn } from '@/lib/utils'
+  6 | ...t { Label } from '@/components/ui/label'
+  7 | ...t { Input } from '@/components/ui/input'
+
+The export HeartUsers2 was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Heart?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/home/HelpModal.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/home/HelpModal.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/home/HelpModal.tsx:4:1
+Error: Export Facebook doesn't exist in target module
+  2 | ...
+  3 | ...t { useState, useEffect } from 'react'
+> 4 | ...t { X, Package, HeartUsers2, Share2, Gift, Send, Facebook, MessageCircle } from 'lucide-...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ...t { cn } from '@/lib/utils'
+  6 | ...t { Label } from '@/components/ui/label'
+  7 | ...t { Input } from '@/components/ui/input'
+
+The export Facebook was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Webhook?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/home/HelpModal.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/home/HelpModal.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/home/HelpModal.tsx:4:1
+Error: Export Facebook doesn't exist in target module
+  2 | ...
+  3 | ...t { useState, useEffect } from 'react'
+> 4 | ...t { X, Package, HeartUsers2, Share2, Gift, Send, Facebook, MessageCircle } from 'lucide-...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ...t { cn } from '@/lib/utils'
+  6 | ...t { Label } from '@/components/ui/label'
+  7 | ...t { Input } from '@/components/ui/input'
+
+The export Facebook was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Webhook?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/home/HelpModal.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/home/HelpModal.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/home/HelpModal.tsx:4:1
+Error: Export HeartUsers2 doesn't exist in target module
+  2 | ...
+  3 | ...t { useState, useEffect } from 'react'
+> 4 | ...t { X, Package, HeartUsers2, Share2, Gift, Send, Facebook, MessageCircle } from 'lucide-...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ...t { cn } from '@/lib/utils'
+  6 | ...t { Label } from '@/components/ui/label'
+  7 | ...t { Input } from '@/components/ui/input'
+
+The export HeartUsers2 was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Heart?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/home/HelpModal.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/home/HelpModal.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/home/HelpModal.tsx:4:1
+Error: Export HeartUsers2 doesn't exist in target module
+  2 | ...
+  3 | ...t { useState, useEffect } from 'react'
+> 4 | ...t { X, Package, HeartUsers2, Share2, Gift, Send, Facebook, MessageCircle } from 'lucide-...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ...t { cn } from '@/lib/utils'
+  6 | ...t { Label } from '@/components/ui/label'
+  7 | ...t { Input } from '@/components/ui/input'
+
+The export HeartUsers2 was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Heart?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/home/HelpModal.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/home/HelpModal.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/home/HelpModal.tsx:4:1
+Error: Export Facebook doesn't exist in target module
+  2 | ...
+  3 | ...t { useState, useEffect } from 'react'
+> 4 | ...t { X, Package, HeartUsers2, Share2, Gift, Send, Facebook, MessageCircle } from 'lucide-...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ...t { cn } from '@/lib/utils'
+  6 | ...t { Label } from '@/components/ui/label'
+  7 | ...t { Input } from '@/components/ui/input'
+
+The export Facebook was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Webhook?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/home/HelpModal.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/home/HelpModal.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/home/HelpModal.tsx:4:1
+Error: Export Facebook doesn't exist in target module
+  2 | ...
+  3 | ...t { useState, useEffect } from 'react'
+> 4 | ...t { X, Package, HeartUsers2, Share2, Gift, Send, Facebook, MessageCircle } from 'lucide-...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ...t { cn } from '@/lib/utils'
+  6 | ...t { Label } from '@/components/ui/label'
+  7 | ...t { Input } from '@/components/ui/input'
+
+The export Facebook was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Webhook?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/home/HelpModal.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/home/HelpModal.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/home/HelpModal.tsx:4:1
+Error: Export HeartUsers2 doesn't exist in target module
+  2 | ...
+  3 | ...t { useState, useEffect } from 'react'
+> 4 | ...t { X, Package, HeartUsers2, Share2, Gift, Send, Facebook, MessageCircle } from 'lucide-...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ...t { cn } from '@/lib/utils'
+  6 | ...t { Label } from '@/components/ui/label'
+  7 | ...t { Input } from '@/components/ui/input'
+
+The export HeartUsers2 was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Heart?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/home/HelpModal.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/home/HelpModal.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/home/HelpModal.tsx:4:1
+Error: Export HeartUsers2 doesn't exist in target module
+  2 | ...
+  3 | ...t { useState, useEffect } from 'react'
+> 4 | ...t { X, Package, HeartUsers2, Share2, Gift, Send, Facebook, MessageCircle } from 'lucide-...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ...t { cn } from '@/lib/utils'
+  6 | ...t { Label } from '@/components/ui/label'
+  7 | ...t { Input } from '@/components/ui/input'
+
+The export HeartUsers2 was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Heart?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/home/HelpModal.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/home/HelpModal.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component] 
+[browser] [load pets] SyntaxError: Unexpected token '<', "<!DOCTYPE "... is not valid JSON
+SyntaxError: Unexpected token '<', "<!DOCTYPE "... is not valid JSON (app/page.tsx:33:1)
+[browser] [load pets] SyntaxError: Unexpected token '<', "<!DOCTYPE "... is not valid JSON
+SyntaxError: Unexpected token '<', "<!DOCTYPE "... is not valid JSON (app/page.tsx:33:1)
+[browser] ./components/home/HelpModal.tsx:4:1
+Error: Export Facebook doesn't exist in target module
+  2 | ...
+  3 | ...t { useState, useEffect } from 'react'
+> 4 | ...t { X, Package, HeartUsers2, Share2, Gift, Send, Facebook, MessageCircle } from 'lucide-...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ...t { cn } from '@/lib/utils'
+  6 | ...t { Label } from '@/components/ui/label'
+  7 | ...t { Input } from '@/components/ui/input'
+
+The export Facebook was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Webhook?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/home/HelpModal.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/home/HelpModal.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/home/HelpModal.tsx:4:1
+Error: Export Facebook doesn't exist in target module
+  2 | ...
+  3 | ...t { useState, useEffect } from 'react'
+> 4 | ...t { X, Package, HeartUsers2, Share2, Gift, Send, Facebook, MessageCircle } from 'lucide-...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ...t { cn } from '@/lib/utils'
+  6 | ...t { Label } from '@/components/ui/label'
+  7 | ...t { Input } from '@/components/ui/input'
+
+The export Facebook was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Webhook?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/home/HelpModal.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/home/HelpModal.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/home/HelpModal.tsx:4:1
+Error: Export HeartUsers2 doesn't exist in target module
+  2 | ...
+  3 | ...t { useState, useEffect } from 'react'
+> 4 | ...t { X, Package, HeartUsers2, Share2, Gift, Send, Facebook, MessageCircle } from 'lucide-...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ...t { cn } from '@/lib/utils'
+  6 | ...t { Label } from '@/components/ui/label'
+  7 | ...t { Input } from '@/components/ui/input'
+
+The export HeartUsers2 was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Heart?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/home/HelpModal.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/home/HelpModal.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/home/HelpModal.tsx:4:1
+Error: Export HeartUsers2 doesn't exist in target module
+  2 | ...
+  3 | ...t { useState, useEffect } from 'react'
+> 4 | ...t { X, Package, HeartUsers2, Share2, Gift, Send, Facebook, MessageCircle } from 'lucide-...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ...t { cn } from '@/lib/utils'
+  6 | ...t { Label } from '@/components/ui/label'
+  7 | ...t { Input } from '@/components/ui/input'
+
+The export HeartUsers2 was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Heart?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/home/HelpModal.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/home/HelpModal.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/home/HelpModal.tsx:4:1
+Error: Export Facebook doesn't exist in target module
+  2 | ...
+  3 | ...t { useState, useEffect } from 'react'
+> 4 | ...t { X, Package, HeartUsers2, Share2, Gift, Send, Facebook, MessageCircle } from 'lucide-...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ...t { cn } from '@/lib/utils'
+  6 | ...t { Label } from '@/components/ui/label'
+  7 | ...t { Input } from '@/components/ui/input'
+
+The export Facebook was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Webhook?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/home/HelpModal.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/home/HelpModal.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/home/HelpModal.tsx:4:1
+Error: Export Facebook doesn't exist in target module
+  2 | ...
+  3 | ...t { useState, useEffect } from 'react'
+> 4 | ...t { X, Package, HeartUsers2, Share2, Gift, Send, Facebook, MessageCircle } from 'lucide-...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ...t { cn } from '@/lib/utils'
+  6 | ...t { Label } from '@/components/ui/label'
+  7 | ...t { Input } from '@/components/ui/input'
+
+The export Facebook was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Webhook?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/home/HelpModal.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/home/HelpModal.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/home/HelpModal.tsx:4:1
+Error: Export HeartUsers2 doesn't exist in target module
+  2 | ...
+  3 | ...t { useState, useEffect } from 'react'
+> 4 | ...t { X, Package, HeartUsers2, Share2, Gift, Send, Facebook, MessageCircle } from 'lucide-...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ...t { cn } from '@/lib/utils'
+  6 | ...t { Label } from '@/components/ui/label'
+  7 | ...t { Input } from '@/components/ui/input'
+
+The export HeartUsers2 was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Heart?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/home/HelpModal.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/home/HelpModal.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/home/HelpModal.tsx:4:1
+Error: Export HeartUsers2 doesn't exist in target module
+  2 | ...
+  3 | ...t { useState, useEffect } from 'react'
+> 4 | ...t { X, Package, HeartUsers2, Share2, Gift, Send, Facebook, MessageCircle } from 'lucide-...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ...t { cn } from '@/lib/utils'
+  6 | ...t { Label } from '@/components/ui/label'
+  7 | ...t { Input } from '@/components/ui/input'
+
+The export HeartUsers2 was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Heart?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/home/HelpModal.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/home/HelpModal.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component] 
+⨯ ./components/home/HelpModal.tsx:4:1
+Error: Export Facebook doesn't exist in target module
+  [90m2 |[0m ...
+  [90m3 |[0m ...[36mt[0m { useState, useEffect } [36mfrom[0m [32m'react'[0m
+[31m[1m>[0m [90m4 |[0m ...[36mt[0m { [33mX[0m, [33mPackage[0m, [33mHeartUsers2[0m, [33mShare2[0m, [33mGift[0m, [33mSend[0m, [33mFacebook[0m, [33mMessageCircle[0m } [36mfrom[0m [32m'lucide-...[0m
+  [90m  |[0m    [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m ...[36mt[0m { cn } [36mfrom[0m [32m'@/lib/utils'[0m
+  [90m6 |[0m ...[36mt[0m { [33mLabel[0m } [36mfrom[0m [32m'@/components/ui/label'[0m
+  [90m7 |[0m ...[36mt[0m { [33mInput[0m } [36mfrom[0m [32m'@/components/ui/input'[0m
+
+The export Facebook was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Webhook?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/home/HelpModal.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/home/HelpModal.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+
+
+./components/home/HelpModal.tsx:4:1
+Error: Export Facebook doesn't exist in target module
+  [90m2 |[0m ...
+  [90m3 |[0m ...[36mt[0m { useState, useEffect } [36mfrom[0m [32m'react'[0m
+[31m[1m>[0m [90m4 |[0m ...[36mt[0m { [33mX[0m, [33mPackage[0m, [33mHeartUsers2[0m, [33mShare2[0m, [33mGift[0m, [33mSend[0m, [33mFacebook[0m, [33mMessageCircle[0m } [36mfrom[0m [32m'lucide-...[0m
+  [90m  |[0m    [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m ...[36mt[0m { cn } [36mfrom[0m [32m'@/lib/utils'[0m
+  [90m6 |[0m ...[36mt[0m { [33mLabel[0m } [36mfrom[0m [32m'@/components/ui/label'[0m
+  [90m7 |[0m ...[36mt[0m { [33mInput[0m } [36mfrom[0m [32m'@/components/ui/input'[0m
+
+The export Facebook was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Webhook?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/home/HelpModal.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/home/HelpModal.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+
+
+./components/home/HelpModal.tsx:4:1
+Error: Export HeartUsers2 doesn't exist in target module
+  [90m2 |[0m ...
+  [90m3 |[0m ...[36mt[0m { useState, useEffect } [36mfrom[0m [32m'react'[0m
+[31m[1m>[0m [90m4 |[0m ...[36mt[0m { [33mX[0m, [33mPackage[0m, [33mHeartUsers2[0m, [33mShare2[0m, [33mGift[0m, [33mSend[0m, [33mFacebook[0m, [33mMessageCircle[0m } [36mfrom[0m [32m'lucide-...[0m
+  [90m  |[0m    [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m ...[36mt[0m { cn } [36mfrom[0m [32m'@/lib/utils'[0m
+  [90m6 |[0m ...[36mt[0m { [33mLabel[0m } [36mfrom[0m [32m'@/components/ui/label'[0m
+  [90m7 |[0m ...[36mt[0m { [33mInput[0m } [36mfrom[0m [32m'@/components/ui/input'[0m
+
+The export HeartUsers2 was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Heart?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/home/HelpModal.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/home/HelpModal.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+
+
+./components/home/HelpModal.tsx:4:1
+Error: Export HeartUsers2 doesn't exist in target module
+  [90m2 |[0m ...
+  [90m3 |[0m ...[36mt[0m { useState, useEffect } [36mfrom[0m [32m'react'[0m
+[31m[1m>[0m [90m4 |[0m ...[36mt[0m { [33mX[0m, [33mPackage[0m, [33mHeartUsers2[0m, [33mShare2[0m, [33mGift[0m, [33mSend[0m, [33mFacebook[0m, [33mMessageCircle[0m } [36mfrom[0m [32m'lucide-...[0m
+  [90m  |[0m    [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m5 |[0m ...[36mt[0m { cn } [36mfrom[0m [32m'@/lib/utils'[0m
+  [90m6 |[0m ...[36mt[0m { [33mLabel[0m } [36mfrom[0m [32m'@/components/ui/label'[0m
+  [90m7 |[0m ...[36mt[0m { [33mInput[0m } [36mfrom[0m [32m'@/components/ui/input'[0m
+
+The export HeartUsers2 was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Heart?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/home/HelpModal.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/home/HelpModal.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+
+[browser] Uncaught Error: ./components/home/HelpModal.tsx:4:1
+Error: Export Facebook doesn't exist in target module
+  2 | ...
+  3 | ...t { useState, useEffect } from 'react'
+> 4 | ...t { X, Package, HeartUsers2, Share2, Gift, Send, Facebook, MessageCircle } from 'lucide-...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ...t { cn } from '@/lib/utils'
+  6 | ...t { Label } from '@/components/ui/label'
+  7 | ...t { Input } from '@/components/ui/input'
+
+The export Facebook was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Webhook?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/home/HelpModal.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/home/HelpModal.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+
+    at <unknown> (Error: ./components/home/HelpModal.tsx:4:1)
+    at <unknown> (Error: (./components/home/HelpModal.tsx:4:1)
+[browser] ./components/home/HelpModal.tsx:4:1
+Error: Export Facebook doesn't exist in target module
+  2 | ...
+  3 | ...t { useState, useEffect } from 'react'
+> 4 | ...t { X, Package, HeartUsers2, Share2, Gift, Send, Facebook, MessageCircle } from 'lucide-...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ...t { cn } from '@/lib/utils'
+  6 | ...t { Label } from '@/components/ui/label'
+  7 | ...t { Input } from '@/components/ui/input'
+
+The export Facebook was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Webhook?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/home/HelpModal.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/home/HelpModal.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/home/HelpModal.tsx:4:1
+Error: Export Facebook doesn't exist in target module
+  2 | ...
+  3 | ...t { useState, useEffect } from 'react'
+> 4 | ...t { X, Package, HeartUsers2, Share2, Gift, Send, Facebook, MessageCircle } from 'lucide-...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ...t { cn } from '@/lib/utils'
+  6 | ...t { Label } from '@/components/ui/label'
+  7 | ...t { Input } from '@/components/ui/input'
+
+The export Facebook was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Webhook?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/home/HelpModal.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/home/HelpModal.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/home/HelpModal.tsx:4:1
+Error: Export HeartUsers2 doesn't exist in target module
+  2 | ...
+  3 | ...t { useState, useEffect } from 'react'
+> 4 | ...t { X, Package, HeartUsers2, Share2, Gift, Send, Facebook, MessageCircle } from 'lucide-...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ...t { cn } from '@/lib/utils'
+  6 | ...t { Label } from '@/components/ui/label'
+  7 | ...t { Input } from '@/components/ui/input'
+
+The export HeartUsers2 was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Heart?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/home/HelpModal.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/home/HelpModal.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/home/HelpModal.tsx:4:1
+Error: Export HeartUsers2 doesn't exist in target module
+  2 | ...
+  3 | ...t { useState, useEffect } from 'react'
+> 4 | ...t { X, Package, HeartUsers2, Share2, Gift, Send, Facebook, MessageCircle } from 'lucide-...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ...t { cn } from '@/lib/utils'
+  6 | ...t { Label } from '@/components/ui/label'
+  7 | ...t { Input } from '@/components/ui/input'
+
+The export HeartUsers2 was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Heart?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/home/HelpModal.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/home/HelpModal.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/home/HelpModal.tsx:4:1
+Error: Export Facebook doesn't exist in target module
+  2 | ...
+  3 | ...t { useState, useEffect } from 'react'
+> 4 | ...t { X, Package, HeartUsers2, Share2, Gift, Send, Facebook, MessageCircle } from 'lucide-...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ...t { cn } from '@/lib/utils'
+  6 | ...t { Label } from '@/components/ui/label'
+  7 | ...t { Input } from '@/components/ui/input'
+
+The export Facebook was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Webhook?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/home/HelpModal.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/home/HelpModal.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/home/HelpModal.tsx:4:1
+Error: Export Facebook doesn't exist in target module
+  2 | ...
+  3 | ...t { useState, useEffect } from 'react'
+> 4 | ...t { X, Package, HeartUsers2, Share2, Gift, Send, Facebook, MessageCircle } from 'lucide-...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ...t { cn } from '@/lib/utils'
+  6 | ...t { Label } from '@/components/ui/label'
+  7 | ...t { Input } from '@/components/ui/input'
+
+The export Facebook was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Webhook?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/home/HelpModal.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/home/HelpModal.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/home/HelpModal.tsx:4:1
+Error: Export HeartUsers2 doesn't exist in target module
+  2 | ...
+  3 | ...t { useState, useEffect } from 'react'
+> 4 | ...t { X, Package, HeartUsers2, Share2, Gift, Send, Facebook, MessageCircle } from 'lucide-...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ...t { cn } from '@/lib/utils'
+  6 | ...t { Label } from '@/components/ui/label'
+  7 | ...t { Input } from '@/components/ui/input'
+
+The export HeartUsers2 was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Heart?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/home/HelpModal.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/home/HelpModal.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/home/HelpModal.tsx:4:1
+Error: Export HeartUsers2 doesn't exist in target module
+  2 | ...
+  3 | ...t { useState, useEffect } from 'react'
+> 4 | ...t { X, Package, HeartUsers2, Share2, Gift, Send, Facebook, MessageCircle } from 'lucide-...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ...t { cn } from '@/lib/utils'
+  6 | ...t { Label } from '@/components/ui/label'
+  7 | ...t { Input } from '@/components/ui/input'
+
+The export HeartUsers2 was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Heart?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/home/HelpModal.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/home/HelpModal.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/home/HelpModal.tsx:4:1
+Error: Export Facebook doesn't exist in target module
+  2 | ...
+  3 | ...t { useState, useEffect } from 'react'
+> 4 | ...t { X, Package, HeartUsers2, Share2, Gift, Send, Facebook, MessageCircle } from 'lucide-...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ...t { cn } from '@/lib/utils'
+  6 | ...t { Label } from '@/components/ui/label'
+  7 | ...t { Input } from '@/components/ui/input'
+
+The export Facebook was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Webhook?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/home/HelpModal.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/home/HelpModal.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/home/HelpModal.tsx:4:1
+Error: Export Facebook doesn't exist in target module
+  2 | ...
+  3 | ...t { useState, useEffect } from 'react'
+> 4 | ...t { X, Package, HeartUsers2, Share2, Gift, Send, Facebook, MessageCircle } from 'lucide-...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ...t { cn } from '@/lib/utils'
+  6 | ...t { Label } from '@/components/ui/label'
+  7 | ...t { Input } from '@/components/ui/input'
+
+The export Facebook was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Webhook?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/home/HelpModal.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/home/HelpModal.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/home/HelpModal.tsx:4:1
+Error: Export HeartUsers2 doesn't exist in target module
+  2 | ...
+  3 | ...t { useState, useEffect } from 'react'
+> 4 | ...t { X, Package, HeartUsers2, Share2, Gift, Send, Facebook, MessageCircle } from 'lucide-...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ...t { cn } from '@/lib/utils'
+  6 | ...t { Label } from '@/components/ui/label'
+  7 | ...t { Input } from '@/components/ui/input'
+
+The export HeartUsers2 was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-client] (ecmascript).
+Did you mean to import Heart?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/home/HelpModal.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/home/HelpModal.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component] 
+[browser] ./components/home/HelpModal.tsx:4:1
+Error: Export HeartUsers2 doesn't exist in target module
+  2 | ...
+  3 | ...t { useState, useEffect } from 'react'
+> 4 | ...t { X, Package, HeartUsers2, Share2, Gift, Send, Facebook, MessageCircle } from 'lucide-...
+    |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | ...t { cn } from '@/lib/utils'
+  6 | ...t { Label } from '@/components/ui/label'
+  7 | ...t { Input } from '@/components/ui/input'
+
+The export HeartUsers2 was not found in module [project]/node_modules/lucide-react/dist/esm/lucide-react.mjs [app-ssr] (ecmascript).
+Did you mean to import Heart?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./components/home/HelpModal.tsx [Client Component Browser]
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/home/HelpModal.tsx [Client Component SSR]
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component] 
+⚠ Found a change in next.config.mjs. Restarting the server to apply the changes...

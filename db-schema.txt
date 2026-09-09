@@ -1,0 +1,242 @@
+================================================================================
+  ESTRUCTURA DE LA BASE DE DATOS: pet-adoption.db
+  Motor: SQLite
+  Archivo: data/pet-adoption.db
+================================================================================
+
+
+================================================================================
+  DIAGRAMA DE ENTIDAD-RELACION (ER)
+================================================================================
+
++--------------------+         +--------------------+
+|    foundations     |         |       users        |
+| ------------------ |    1:N  | ------------------ |
+| PK id  INTEGER     |<--------| PK id  INTEGER     |
+|    name            |         |    name            |
+|    description     |         |    email (UNIQUE)  |
+|    location        |         |    password_hash   |
+|    email           |         |    role TEXT       |
+|    phone           |         |    avatar          |
+|    logo_url        |         | FK foundation_id   |
+|    created_at      |         |    created_at      |
++----------+---------+         +--------+-----------+
+           | 1:N                         | 1:N
+           v                             v
++--------------------+         +--------------------+
+|       pets         |         |     favorites      |
+| ------------------ |         | ------------------ |
+| PK id  INTEGER     |    +--->| PK id  INTEGER     |
+|    name            |    |    | FK user_id         |
+|    type            |    |    | FK pet_id          |
+|    breed           |    |    |    created_at      |
+|    age             |    |    +--------------------+
+|    gender          |    |         UNIQUE(user_id,pet_id)
+|    weight          |    |
+|    location        |    |    +--------------------+
+|    image           |    |    | adoption_requests  |
+|    tone            |    |    | ------------------ |
+|    vaccinated (0/1)|    |    | PK id  INTEGER     |
+|    sterilized (0/1)|    +----| FK user_id         |
+|    personality (J) |         | FK pet_id          |
+|    about           |         |    status (CHECK)  |
+|    good_with  (J)  |         |    message         |
+|    energy          |         |    scheduled_date  |
+| FK foundation_id   |         |    created_at      |
+| FK published_by    |         +--------------------+
+|    created_at      |
++--------------------+
+
+  (J) = JSON almacenado como TEXT
+
+
+================================================================================
+  TABLA 1: foundations
+  Registros actuales: 2
+================================================================================
+
++---------------+---------------+---------+----------+-------------------------------+
+| COLUMNA       | TIPO          | NOTNULL | PK       | DEFAULT                       |
++---------------+---------------+---------+----------+-------------------------------+
+| id            | INTEGER       | NO      | YES (1)  | -                             |
+| name          | TEXT          | YES     | NO       | -                             |
+| description   | TEXT          | NO      | NO       | -                             |
+| location      | TEXT          | NO      | NO       | -                             |
+| email         | TEXT          | NO      | NO       | -                             |
+| phone         | TEXT          | NO      | NO       | -                             |
+| logo_url      | TEXT          | NO      | NO       | -                             |
+| created_at    | TEXT          | YES     | NO       | datetime('now')               |
++---------------+---------------+---------+----------+-------------------------------+
+
+  Sin foreign keys.
+  Sin indices adicionales (aparte del PK).
+
+
+================================================================================
+  TABLA 2: users
+  Registros actuales: 6
+================================================================================
+
++---------------+---------------+---------+----------+-------------------------------+
+| COLUMNA       | TIPO          | NOTNULL | PK       | DEFAULT                       |
++---------------+---------------+---------+----------+-------------------------------+
+| id            | INTEGER       | NO      | YES (1)  | -                             |
+| name          | TEXT          | YES     | NO       | -                             |
+| email         | TEXT          | YES     | NO       | -                             |
+| password_hash | TEXT          | YES     | NO       | -                             |
+| role          | TEXT          | YES     | NO       | 'usuario'                     |
+| avatar        | TEXT          | NO      | NO       | -                             |
+| foundation_id | INTEGER       | NO      | NO       | -                             |
+| created_at    | TEXT          | YES     | NO       | datetime('now')               |
++---------------+---------------+---------+----------+-------------------------------+
+
+  FOREIGN KEYS:
+    - foundation_id  ->  foundations(id)    ON DELETE: SET NULL
+
+  INDICES:
+    - idx_users_email    (email)   [UNIQUE]
+    - idx_users_role     (role)
+
+  Valores validos para "role":  admin  |  fundacion  |  usuario
+
+
+================================================================================
+  TABLA 3: pets
+  Registros actuales: 4
+================================================================================
+
++---------------+---------------+---------+----------+-------------------------------+
+| COLUMNA       | TIPO          | NOTNULL | PK       | DEFAULT                       |
++---------------+---------------+---------+----------+-------------------------------+
+| id            | INTEGER       | NO      | YES (1)  | -                             |
+| name          | TEXT          | YES     | NO       | -                             |
+| type          | TEXT          | YES     | NO       | -                             |
+| breed         | TEXT          | NO      | NO       | -                             |
+| age           | TEXT          | YES     | NO       | -                             |
+| gender        | TEXT          | NO      | NO       | -                             |
+| weight        | TEXT          | NO      | NO       | -                             |
+| location      | TEXT          | YES     | NO       | -                             |
+| image         | TEXT          | YES     | NO       | -                             |
+| tone          | TEXT          | YES     | NO       | 'bg-[#e9d8c8]'                |
+| vaccinated    | INTEGER       | YES     | NO       | 0                             |
+| sterilized    | INTEGER       | YES     | NO       | 0                             |
+| personality   | TEXT(JSON)    | NO      | NO       | -                             |
+| about         | TEXT          | NO      | NO       | -                             |
+| good_with     | TEXT(JSON)    | NO      | NO       | -                             |
+| energy        | TEXT          | NO      | NO       | -                             |
+| foundation_id | INTEGER       | NO      | NO       | -                             |
+| published_by  | INTEGER       | NO      | NO       | -                             |
+| created_at    | TEXT          | YES     | NO       | datetime('now')               |
++---------------+---------------+---------+----------+-------------------------------+
+
+  FOREIGN KEYS:
+    - foundation_id  ->  foundations(id)    ON DELETE: CASCADE
+    - published_by   ->  users(id)          ON DELETE: SET NULL
+
+  INDICES:
+    - idx_pets_type         (type)
+    - idx_pets_foundation   (foundation_id)
+
+  NOTAS:
+    - vaccinated / sterilized  ->  0 = false,  1 = true  (INTEGER BOOLEAN)
+    - personality  -> JSON array, ej. ["Cariñoso","Juguetón"]
+    - good_with    -> JSON array, ej. ["Niños","Otros perros"]
+    - energy       -> "Baja" | "Media" | "Alta"
+    - type         -> "Perro" | "Gato"
+    - gender       -> "Macho" | "Hembra"
+
+
+================================================================================
+  TABLA 4: favorites
+  Registros actuales: 3
+================================================================================
+
++---------------+---------------+---------+----------+-------------------------------+
+| COLUMNA       | TIPO          | NOTNULL | PK       | DEFAULT                       |
++---------------+---------------+---------+----------+-------------------------------+
+| id            | INTEGER       | NO      | YES (1)  | -                             |
+| user_id       | INTEGER       | YES     | NO       | -                             |
+| pet_id        | INTEGER       | YES     | NO       | -                             |
+| created_at    | TEXT          | YES     | NO       | datetime('now')               |
++---------------+---------------+---------+----------+-------------------------------+
+
+  FOREIGN KEYS:
+    - user_id  ->  users(id)     ON DELETE: CASCADE
+    - pet_id   ->  pets(id)      ON DELETE: CASCADE
+
+  RESTRICCION UNICA:
+    - UNIQUE(user_id, pet_id)   (no se puede repetir el mismo par usuario+mascota)
+
+  INDICES:
+    - idx_favorites_user  (user_id)
+
+
+================================================================================
+  TABLA 5: adoption_requests  (solicitudes de adopcion)
+  Registros actuales: 2
+================================================================================
+
++----------------+---------------+---------+----------+----------------------------+
+| COLUMNA        | TIPO          | NOTNULL | PK       | DEFAULT                    |
++----------------+---------------+---------+----------+----------------------------+
+| id             | INTEGER       | NO      | YES (1)  | -                          |
+| user_id        | INTEGER       | YES     | NO       | -                          |
+| pet_id         | INTEGER       | YES     | NO       | -                          |
+| status         | TEXT          | YES     | NO       | 'pendiente'                |
+| message        | TEXT          | NO      | NO       | -                          |
+| scheduled_date | TEXT          | NO      | NO       | -                          |
+| created_at     | TEXT          | YES     | NO       | datetime('now')            |
++----------------+---------------+---------+----------+----------------------------+
+
+  FOREIGN KEYS:
+    - user_id  ->  users(id)     ON DELETE: CASCADE
+    - pet_id   ->  pets(id)      ON DELETE: CASCADE
+
+  INDICES:
+    - idx_requests_user  (user_id)
+    - idx_requests_pet   (pet_id)
+
+  Valores validos para "status":
+    pendiente  |  aprobada  |  rechazada  |  completada
+
+
+================================================================================
+  RESUMEN DE RELACIONES Y COMPORTAMIENTO ON DELETE
+================================================================================
+
+  Tabla               | Columna FK      | Apunta a         | Accion al borrar padre
+  --------------------+-----------------+------------------+------------------------
+  users               | foundation_id   | foundations(id)  | SET NULL
+  pets                | foundation_id   | foundations(id)  | CASCADE  (borra pets)
+  pets                | published_by    | users(id)        | SET NULL
+  favorites           | user_id         | users(id)        | CASCADE  (borra favs)
+  favorites           | pet_id          | pets(id)         | CASCADE
+  adoption_requests   | user_id         | users(id)        | CASCADE
+  adoption_requests   | pet_id          | pets(id)         | CASCADE
+
+
+================================================================================
+  CUENTAS DEMO INCLUIDAS EN EL SEED (passwords con SHA-256)
+================================================================================
+
+  EMAIL                           | PASSWORD     | ROL
+  --------------------------------+--------------+-----------
+  admin@huellas.com               | admin1234    | Administrador
+  hola@patitasfelices.org         | fundacion123 | Fundacion (Patitas Felices)
+  contacto@hogaresconamor.org     | amor2024     | Fundacion (Hogares con Amor)
+  maria@ejemplo.com               | hola1234     | Usuario adoptante
+  carlos@ejemplo.com              | perrito2024  | Usuario adoptante
+
+
+================================================================================
+  SCRIPTS ASOCIADOS
+================================================================================
+
+  - scripts/migrate.ts   ->  Define CREATE TABLE / INDEX / FK
+  - scripts/seed.ts      ->  Inserta datos demo (fundaciones, usuarios, mascotas,
+                             favoritos y solicitudes)
+
+  Comandos rapidos (en package.json):
+    pnpm db:migrate    ->  Ejecuta migraciones (crea tablas e indices)
+    pnpm db:seed       ->  Ejecuta seed (inserta datos de prueba)
+    pnpm db:setup      ->  Migrate + Seed (atajo)
