@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import db, { type DBUser, type DBFoundation } from '@/lib/db'
+import { getSupabaseClient } from '@/lib/supabase'
 
 export async function GET(req: Request) {
   try {
@@ -10,9 +10,17 @@ export async function GET(req: Request) {
       return NextResponse.json({ ok: false, error: 'admin_email es requerido.' }, { status: 400 })
     }
 
-    const admin = db
-      .prepare('SELECT * FROM users WHERE email = ?')
-      .get(admin_email.trim().toLowerCase()) as DBUser | undefined
+    const supabase = getSupabaseClient()
+
+    const { data: admin, error: adminError } = await supabase
+      .from('users')
+      .select('*')
+      .eq('email', admin_email.trim().toLowerCase())
+      .maybeSingle()
+
+    if (adminError && adminError.code !== 'PGRST116') {
+      throw adminError
+    }
 
     if (!admin) {
       return NextResponse.json({ ok: false, error: 'Admin no encontrado.' }, { status: 404 })
@@ -22,26 +30,54 @@ export async function GET(req: Request) {
       return NextResponse.json({ ok: false, error: 'Acceso denegado.' }, { status: 403 })
     }
 
-    const foundations = db.prepare('SELECT * FROM foundations ORDER BY created_at DESC').all() as DBFoundation[]
+    const { data: foundations, error: foundationsError } = await supabase
+      .from('foundations')
+      .select('*')
+      .order('created_at', { ascending: false })
 
-    const result = foundations.map((f) => {
-      const petCount = db.prepare('SELECT COUNT(*) as count FROM pets WHERE foundation_id = ?').get(f.id) as { count: number }
-      const userCount = db.prepare('SELECT COUNT(*) as count FROM users WHERE foundation_id = ?').get(f.id) as { count: number }
+    if (foundationsError) {
+      throw foundationsError
+    }
 
-      return {
-        id: f.id,
-        name: f.name,
-        description: f.description,
-        location: f.location,
-        email: f.email,
-        phone: f.phone,
-        logo_url: f.logo_url,
-        verified: Number((f as DBFoundation).verified ?? 1),
-        created_at: f.created_at,
-        pets_count: petCount.count,
-        users_count: userCount.count,
-      }
-    })
+    const result = [] as Array<{
+      id: number
+      name: string
+      description: string | null
+      location: string | null
+      email: string | null
+      phone: string | null
+      logo_url: string | null
+      verified: number
+      created_at: string
+      pets_count: number
+      users_count: number
+    }>
+
+    for (const foundation of foundations ?? []) {
+      const { data: petRows } = await supabase
+        .from('pets')
+        .select('id')
+        .eq('foundation_id', foundation.id)
+
+      const { data: userRows } = await supabase
+        .from('users')
+        .select('id')
+        .eq('foundation_id', foundation.id)
+
+      result.push({
+        id: foundation.id,
+        name: foundation.name,
+        description: foundation.description,
+        location: foundation.location,
+        email: foundation.email,
+        phone: foundation.phone,
+        logo_url: foundation.logo_url,
+        verified: Number(foundation.verified ?? 1),
+        created_at: foundation.created_at,
+        pets_count: petRows?.length ?? 0,
+        users_count: userRows?.length ?? 0,
+      })
+    }
 
     return NextResponse.json({ ok: true, foundations: result })
   } catch (err) {
@@ -63,9 +99,17 @@ export async function PATCH(req: Request) {
       )
     }
 
-    const admin = db
-      .prepare('SELECT * FROM users WHERE email = ?')
-      .get(admin_email.trim().toLowerCase()) as DBUser | undefined
+    const supabase = getSupabaseClient()
+
+    const { data: admin, error: adminError } = await supabase
+      .from('users')
+      .select('*')
+      .eq('email', admin_email.trim().toLowerCase())
+      .maybeSingle()
+
+    if (adminError && adminError.code !== 'PGRST116') {
+      throw adminError
+    }
 
     if (!admin) {
       return NextResponse.json({ ok: false, error: 'Admin no encontrado.' }, { status: 404 })
@@ -80,7 +124,15 @@ export async function PATCH(req: Request) {
       return NextResponse.json({ ok: false, error: 'foundation_id inválido.' }, { status: 400 })
     }
 
-    const foundation = db.prepare('SELECT * FROM foundations WHERE id = ?').get(fId) as DBFoundation | undefined
+    const { data: foundation, error: foundationError } = await supabase
+      .from('foundations')
+      .select('*')
+      .eq('id', fId)
+      .maybeSingle()
+
+    if (foundationError && foundationError.code !== 'PGRST116') {
+      throw foundationError
+    }
 
     if (!foundation) {
       return NextResponse.json({ ok: false, error: 'Fundación no encontrada.' }, { status: 404 })
@@ -96,45 +148,38 @@ export async function PATCH(req: Request) {
       logo_url?: string
     }
 
-    const fields: string[] = []
-    const values: unknown[] = []
+    const update: Record<string, unknown> = {}
 
     if (body.verified !== undefined) {
-      fields.push('verified = ?')
-      values.push(body.verified ? 1 : 0)
+      update.verified = body.verified ? 1 : 0
+    }
+    if (body.name !== undefined) update.name = body.name.trim()
+    if (body.description !== undefined) update.description = body.description || null
+    if (body.location !== undefined) update.location = body.location || null
+    if (body.email !== undefined) update.email = body.email || null
+    if (body.phone !== undefined) update.phone = body.phone || null
+    if (body.logo_url !== undefined) update.logo_url = body.logo_url || null
+
+    if (Object.keys(update).length > 0) {
+      const { error: updateError } = await supabase
+        .from('foundations')
+        .update(update)
+        .eq('id', fId)
+
+      if (updateError) {
+        throw updateError
+      }
     }
 
-    if (body.name !== undefined) {
-      fields.push('name = ?')
-      values.push(body.name.trim())
-    }
-    if (body.description !== undefined) {
-      fields.push('description = ?')
-      values.push(body.description || null)
-    }
-    if (body.location !== undefined) {
-      fields.push('location = ?')
-      values.push(body.location || null)
-    }
-    if (body.email !== undefined) {
-      fields.push('email = ?')
-      values.push(body.email || null)
-    }
-    if (body.phone !== undefined) {
-      fields.push('phone = ?')
-      values.push(body.phone || null)
-    }
-    if (body.logo_url !== undefined) {
-      fields.push('logo_url = ?')
-      values.push(body.logo_url || null)
-    }
+    const { data: updatedFoundation, error: updatedError } = await supabase
+      .from('foundations')
+      .select('*')
+      .eq('id', fId)
+      .maybeSingle()
 
-    if (fields.length > 0) {
-      values.push(fId)
-      db.prepare(`UPDATE foundations SET ${fields.join(', ')} WHERE id = ?`).run(...values)
+    if (updatedError && updatedError.code !== 'PGRST116') {
+      throw updatedError
     }
-
-    const updatedFoundation = db.prepare('SELECT * FROM foundations WHERE id = ?').get(fId) as DBFoundation
 
     return NextResponse.json({
       ok: true,

@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import db, { type DBUser, type DBFoundation, type DBPet, type DBAdoptionRequest } from '@/lib/db'
+import { getSupabaseClient } from '@/lib/supabase'
 
 function parseJSON<T>(raw: string | null): T | null {
   if (!raw) return null
@@ -10,27 +10,6 @@ function parseJSON<T>(raw: string | null): T | null {
   }
 }
 
-type RequestRow = DBAdoptionRequest &
-  DBUser &
-  DBPet &
-  DBFoundation & {
-    request_id: number
-    user_id_req: number
-    pet_id_req: number
-    status_req: string
-    message_req: string | null
-    scheduled_date_req: string | null
-    application_req: string | null
-    request_created_at: string
-    user_name: string
-    user_email: string
-    pet_name: string
-    pet_type: string
-    pet_image: string
-    pet_location: string
-    foundation_name: string
-  }
-
 export async function GET(req: Request) {
   try {
     const { searchParams } = new URL(req.url)
@@ -39,43 +18,13 @@ export async function GET(req: Request) {
     const adminEmail = searchParams.get('admin_email')
     const statusFilter = searchParams.get('status')
 
-    const filters: string[] = []
-    const params: Array<string | number> = []
-
-    if (userEmail) {
-      const user = db
-        .prepare('SELECT * FROM users WHERE email = ?')
-        .get(userEmail.trim().toLowerCase()) as DBUser | undefined
-
-      if (!user) {
-        return NextResponse.json({ ok: false, error: 'Usuario no encontrado.' }, { status: 404 })
-      }
-      filters.push('r.user_id = ?')
-      params.push(user.id)
-    }
-
-    if (foundationEmail) {
-      const foundation = db
-        .prepare('SELECT * FROM foundations WHERE email = ?')
-        .get(foundationEmail.trim().toLowerCase()) as DBFoundation | undefined
-
-      if (!foundation) {
-        return NextResponse.json({ ok: false, error: 'Fundación no encontrada.' }, { status: 404 })
-      }
-      filters.push('p.foundation_id = ?')
-      params.push(foundation.id)
-    }
-
-    if (adminEmail) {
-      const admin = db
-        .prepare('SELECT * FROM users WHERE email = ?')
-        .get(adminEmail.trim().toLowerCase()) as DBUser | undefined
-
-      if (!admin) {
-        return NextResponse.json({ ok: false, error: 'Usuario no encontrado.' }, { status: 404 })
-      }
-      if (admin.role !== 'admin') {
-        return NextResponse.json({ ok: false, error: 'Permisos insuficientes.' }, { status: 403 })
+    if (statusFilter) {
+      const validStatuses = ['pendiente', 'aprobada', 'rechazada', 'completada']
+      if (!validStatuses.includes(statusFilter)) {
+        return NextResponse.json(
+          { ok: false, error: 'Status inválido.' },
+          { status: 400 },
+        )
       }
     }
 
@@ -86,74 +35,148 @@ export async function GET(req: Request) {
       )
     }
 
-    if (statusFilter) {
-      const validStatuses = ['pendiente', 'aprobada', 'rechazada', 'completada']
-      if (!validStatuses.includes(statusFilter)) {
-        return NextResponse.json(
-          { ok: false, error: 'Status inválido.' },
-          { status: 400 },
-        )
+    const supabase = getSupabaseClient()
+
+    let user: any = null
+    let foundation: any = null
+    let admin: any = null
+
+    if (userEmail) {
+      const { data: userData, error: userError } = await supabase
+        .from('users')
+        .select('*')
+        .eq('email', userEmail.trim().toLowerCase())
+        .maybeSingle()
+
+      if (userError && userError.code !== 'PGRST116') {
+        throw userError
       }
-      filters.push('r.status = ?')
-      params.push(statusFilter)
+
+      if (!userData) {
+        return NextResponse.json({ ok: false, error: 'Usuario no encontrado.' }, { status: 404 })
+      }
+
+      user = userData
     }
 
-    const whereClause = filters.length > 0 ? `WHERE ${filters.join(' AND ')}` : ''
+    if (foundationEmail) {
+      const { data: foundationData, error: foundationError } = await supabase
+        .from('foundations')
+        .select('*')
+        .eq('email', foundationEmail.trim().toLowerCase())
+        .maybeSingle()
 
-    const query = `
-      SELECT
-        r.id AS request_id,
-        r.user_id AS user_id_req,
-        r.pet_id AS pet_id_req,
-        r.status AS status_req,
-        r.message AS message_req,
-        r.scheduled_date AS scheduled_date_req,
-        r.application AS application_req,
-        r.created_at AS request_created_at,
-        u.id AS user_id,
-        u.name AS user_name,
-        u.email AS user_email,
-        p.id AS pet_id,
-        p.name AS pet_name,
-        p.type AS pet_type,
-        p.image AS pet_image,
-        p.location AS pet_location,
-        f.id AS foundation_id,
-        f.name AS foundation_name
-      FROM adoption_requests r
-      INNER JOIN users u ON r.user_id = u.id
-      INNER JOIN pets p ON r.pet_id = p.id
-      INNER JOIN foundations f ON p.foundation_id = f.id
-      ${whereClause}
-      ORDER BY r.created_at DESC
-    `
+      if (foundationError && foundationError.code !== 'PGRST116') {
+        throw foundationError
+      }
 
-    const rows = db.prepare(query).all(...params) as RequestRow[]
+      if (!foundationData) {
+        return NextResponse.json({ ok: false, error: 'Fundación no encontrada.' }, { status: 404 })
+      }
 
-    const requests = rows.map((r) => ({
-      id: r.request_id,
-      status: r.status_req as DBAdoptionRequest['status'],
-      message: r.message_req,
-      scheduled_date: r.scheduled_date_req,
-      application: parseJSON<unknown>(r.application_req),
-      created_at: r.request_created_at,
-      user: {
-        id: r.user_id,
-        name: r.user_name,
-        email: r.user_email,
-      },
-      pet: {
-        id: r.pet_id,
-        name: r.pet_name,
-        type: r.pet_type,
-        image: r.pet_image,
-        location: r.pet_location,
-      },
-      foundation: {
-        id: r.foundation_id,
-        name: r.foundation_name,
-      },
-    }))
+      foundation = foundationData
+    }
+
+    if (adminEmail) {
+      const { data: adminData, error: adminError } = await supabase
+        .from('users')
+        .select('*')
+        .eq('email', adminEmail.trim().toLowerCase())
+        .maybeSingle()
+
+      if (adminError && adminError.code !== 'PGRST116') {
+        throw adminError
+      }
+
+      if (!adminData) {
+        return NextResponse.json({ ok: false, error: 'Usuario no encontrado.' }, { status: 404 })
+      }
+
+      admin = adminData
+
+      if (admin.role !== 'admin') {
+        return NextResponse.json({ ok: false, error: 'Permisos insuficientes.' }, { status: 403 })
+      }
+    }
+
+    const { data: requestsData, error: requestsError } = await supabase
+      .from('adoption_requests')
+      .select('*')
+      .order('created_at', { ascending: false })
+
+    if (requestsError) {
+      throw requestsError
+    }
+
+    const petIds = [...new Set((requestsData ?? []).map((request) => request.pet_id))]
+    const userIds = [...new Set((requestsData ?? []).map((request) => request.user_id))]
+
+    const { data: petsData } = petIds.length
+      ? await supabase.from('pets').select('id, name, type, image, location, foundation_id').in('id', petIds)
+      : { data: [] }
+
+    const { data: usersData } = userIds.length
+      ? await supabase.from('users').select('id, name, email').in('id', userIds)
+      : { data: [] }
+
+    const foundationIds = [...new Set((petsData ?? []).map((pet) => pet.foundation_id).filter(Boolean))]
+    const { data: foundationsData } = foundationIds.length
+      ? await supabase.from('foundations').select('id, name').in('id', foundationIds)
+      : { data: [] }
+
+    const userMap = new Map((usersData ?? []).map((u) => [u.id, u]))
+    const petMap = new Map((petsData ?? []).map((p) => [p.id, p]))
+    const foundationMap = new Map((foundationsData ?? []).map((f) => [f.id, f.name]))
+
+    const filteredRequests = (requestsData ?? []).filter((request) => {
+      if (userEmail && request.user_id !== user.id) {
+        return false
+      }
+
+      if (foundationEmail) {
+        const pet = petMap.get(request.pet_id)
+        if (!pet || pet.foundation_id !== foundation.id) {
+          return false
+        }
+      }
+
+      if (statusFilter && request.status !== statusFilter) {
+        return false
+      }
+
+      return true
+    })
+
+    const requests = filteredRequests.map((request) => {
+      const userItem = userMap.get(request.user_id)
+      const petItem = petMap.get(request.pet_id)
+      const foundationName = petItem ? foundationMap.get(petItem.foundation_id) ?? '' : ''
+
+      return {
+        id: request.id,
+        status: request.status,
+        message: request.message,
+        scheduled_date: request.scheduled_date,
+        application: parseJSON<unknown>(request.application),
+        created_at: request.created_at,
+        user: {
+          id: userItem?.id ?? request.user_id,
+          name: userItem?.name ?? '',
+          email: userItem?.email ?? '',
+        },
+        pet: {
+          id: petItem?.id ?? request.pet_id,
+          name: petItem?.name ?? '',
+          type: petItem?.type ?? '',
+          image: petItem?.image ?? '',
+          location: petItem?.location ?? '',
+        },
+        foundation: {
+          id: petItem?.foundation_id ?? null,
+          name: foundationName,
+        },
+      }
+    })
 
     return NextResponse.json({ ok: true, requests })
   } catch (err) {
@@ -181,9 +204,17 @@ export async function POST(req: Request) {
       )
     }
 
-    const user = db
-      .prepare('SELECT * FROM users WHERE email = ?')
-      .get(user_email.trim().toLowerCase()) as DBUser | undefined
+    const supabase = getSupabaseClient()
+
+    const { data: user, error: userError } = await supabase
+      .from('users')
+      .select('*')
+      .eq('email', user_email.trim().toLowerCase())
+      .maybeSingle()
+
+    if (userError && userError.code !== 'PGRST116') {
+      throw userError
+    }
 
     if (!user) {
       return NextResponse.json({ ok: false, error: 'Usuario no encontrado.' }, { status: 404 })
@@ -196,93 +227,86 @@ export async function POST(req: Request) {
       )
     }
 
-    const pet = db.prepare('SELECT id FROM pets WHERE id = ?').get(pet_id) as
-      | { id: number }
-      | undefined
+    const { data: pet, error: petError } = await supabase
+      .from('pets')
+      .select('id, foundation_id')
+      .eq('id', pet_id)
+      .maybeSingle()
+
+    if (petError && petError.code !== 'PGRST116') {
+      throw petError
+    }
 
     if (!pet) {
       return NextResponse.json({ ok: false, error: 'Mascota no encontrada.' }, { status: 404 })
     }
 
-    const existing = db
-      .prepare("SELECT id FROM adoption_requests WHERE user_id = ? AND pet_id = ? AND status != 'rechazada' AND status != 'completada'")
-      .get(user.id, pet_id)
+    const { data: existingRequests, error: existingError } = await supabase
+      .from('adoption_requests')
+      .select('id, status')
+      .eq('user_id', user.id)
+      .eq('pet_id', pet_id)
 
-    if (existing) {
+    if (existingError) {
+      throw existingError
+    }
+
+    const hasActive = (existingRequests ?? []).some(
+      (existing) => existing.status !== 'rechazada' && existing.status !== 'completada',
+    )
+
+    if (hasActive) {
       return NextResponse.json(
         { ok: false, error: 'Ya tienes una solicitud activa para esta mascota.' },
         { status: 409 },
       )
     }
 
-    const result = db
-      .prepare(
-        'INSERT INTO adoption_requests (user_id, pet_id, status, message, scheduled_date, application) VALUES (?, ?, ?, ?, ?, ?)',
-      )
-      .run(
-        user.id,
-        pet_id,
-        'pendiente',
-        message?.trim() || null,
-        scheduled_date?.trim() || null,
-        application ? JSON.stringify(application) : null,
-      )
+    const { data: insertedRequest, error: insertError } = await supabase
+      .from('adoption_requests')
+      .insert([
+        {
+          user_id: user.id,
+          pet_id,
+          status: 'pendiente',
+          message: message?.trim() || null,
+          scheduled_date: scheduled_date?.trim() || null,
+          application: application ? JSON.stringify(application) : null,
+        },
+      ])
+      .select('*')
+      .single()
 
-    const requestId = Number(result.lastInsertRowid)
+    if (insertError) {
+      throw insertError
+    }
 
-    const updatedRow = db
-      .prepare(
-        `
-        SELECT
-          r.id AS request_id,
-          r.user_id AS user_id_req,
-          r.pet_id AS pet_id_req,
-          r.status AS status_req,
-          r.message AS message_req,
-          r.scheduled_date AS scheduled_date_req,
-          r.application AS application_req,
-          r.created_at AS request_created_at,
-          u.id AS user_id,
-          u.name AS user_name,
-          u.email AS user_email,
-          p.id AS pet_id,
-          p.name AS pet_name,
-          p.type AS pet_type,
-          p.image AS pet_image,
-          p.location AS pet_location,
-          f.id AS foundation_id,
-          f.name AS foundation_name
-        FROM adoption_requests r
-        INNER JOIN users u ON r.user_id = u.id
-        INNER JOIN pets p ON r.pet_id = p.id
-        INNER JOIN foundations f ON p.foundation_id = f.id
-        WHERE r.id = ?
-      `,
-      )
-      .get(requestId) as RequestRow
+    const { data: foundationData } = pet.foundation_id
+      ? await supabase.from('foundations').select('id, name').eq('id', pet.foundation_id).maybeSingle()
+      : { data: null }
 
     const request = {
-      id: updatedRow.request_id,
-      status: updatedRow.status_req as DBAdoptionRequest['status'],
-      message: updatedRow.message_req,
-      scheduled_date: updatedRow.scheduled_date_req,
-      application: parseJSON<unknown>(updatedRow.application_req),
-      created_at: updatedRow.request_created_at,
+      id: insertedRequest.id,
+      status: insertedRequest.status,
+      message: insertedRequest.message,
+      scheduled_date: insertedRequest.scheduled_date,
+      application: parseJSON<unknown>(insertedRequest.application),
+      created_at: insertedRequest.created_at,
       user: {
-        id: updatedRow.user_id,
-        name: updatedRow.user_name,
-        email: updatedRow.user_email,
+        id: user.id,
+        name: user.name,
+        email: user.email,
       },
       pet: {
-        id: updatedRow.pet_id,
-        name: updatedRow.pet_name,
-        type: updatedRow.pet_type,
-        image: updatedRow.pet_image,
-        location: updatedRow.pet_location,
+        id: pet.id,
+        name: pet.name ?? '',
+        type: pet.type ?? '',
+        image: pet.image ?? '',
+        location: pet.location ?? '',
       },
       foundation: {
-        id: updatedRow.foundation_id,
-        name: updatedRow.foundation_name,
+        id: foundationData?.id ?? pet.foundation_id ?? null,
+        name: foundationData?.name ?? '',
       },
     }
 

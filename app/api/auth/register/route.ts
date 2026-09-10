@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server'
 import { createHash } from 'node:crypto'
-import db, { type UserRole } from '@/lib/db'
+import { getSupabaseClient } from '@/lib/supabase'
+
+type UserRole = 'usuario' | 'fundacion' | 'admin'
 
 function hash(pw: string) {
   return createHash('sha256').update(pw).digest('hex')
@@ -33,38 +35,68 @@ export async function POST(req: Request) {
     }
 
     const lowerEmail = email.trim().toLowerCase()
-    const exists = db.prepare('SELECT id FROM users WHERE email = ?').get(lowerEmail)
-    if (exists) {
+    const supabase = getSupabaseClient()
+
+    const { data: existingUser, error: existingError } = await supabase
+      .from('users')
+      .select('id')
+      .eq('email', lowerEmail)
+      .maybeSingle()
+
+    if (existingError && existingError.code !== 'PGRST116') {
+      throw existingError
+    }
+
+    if (existingUser) {
       return NextResponse.json({ ok: false, error: 'Este correo ya está registrado.' }, { status: 409 })
     }
 
     let foundationId: number | null = null
     if (role === 'fundacion' && foundationName) {
-      const foundInsert = db
-        .prepare('INSERT INTO foundations (name, email) VALUES (?, ?)')
-        .run(foundationName.trim(), lowerEmail)
-      foundationId = Number(foundInsert.lastInsertRowid)
+      const { data: foundation, error: foundationError } = await supabase
+        .from('foundations')
+        .insert([
+          {
+            name: foundationName.trim(),
+            email: lowerEmail,
+          },
+        ])
+        .select('id')
+        .single()
+
+      if (foundationError) {
+        throw foundationError
+      }
+
+      foundationId = foundation.id
     }
 
-    const insert = db.prepare(
-      'INSERT INTO users (name, email, password_hash, role, foundation_id) VALUES (?, ?, ?, ?, ?)',
-    )
-    const insertResult = insert.run(name.trim(), lowerEmail, hash(password), role, foundationId)
-    const userId = Number(insertResult.lastInsertRowid)
+    const { data: insertedUser, error: insertError } = await supabase
+      .from('users')
+      .insert([
+        {
+          name: name.trim(),
+          email: lowerEmail,
+          password_hash: hash(password),
+          role,
+          foundation_id: foundationId,
+        },
+      ])
+      .select('id, name, email, role, foundation_id')
+      .single()
 
-    let returnedFoundationName: string | undefined
-    if (foundationId && foundationName) {
-      returnedFoundationName = foundationName.trim()
+    if (insertError) {
+      throw insertError
     }
 
     return NextResponse.json({
       ok: true,
       user: {
-        id: userId,
-        name: name.trim(),
-        email: lowerEmail,
-        role,
-        foundationName: returnedFoundationName,
+        id: insertedUser.id,
+        name: insertedUser.name,
+        email: insertedUser.email,
+        role: insertedUser.role,
+        foundationName: foundationName?.trim(),
       },
     })
   } catch (err) {

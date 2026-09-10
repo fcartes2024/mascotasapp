@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { createHash } from 'node:crypto'
-import db, { type DBUser, type DBFoundation } from '@/lib/db'
+import { getSupabaseClient } from '@/lib/supabase'
 
 function hash(pw: string) {
   return createHash('sha256').update(pw).digest('hex')
@@ -15,19 +15,36 @@ export async function GET(req: Request) {
       return NextResponse.json({ ok: false, error: 'Email es requerido.' }, { status: 400 })
     }
 
-    const user = db
-      .prepare('SELECT * FROM users WHERE email = ?')
-      .get(email.trim().toLowerCase()) as DBUser | undefined
+    const supabase = getSupabaseClient()
+    const lowerEmail = email.trim().toLowerCase()
+
+    const { data: user, error: userError } = await supabase
+      .from('users')
+      .select('*')
+      .eq('email', lowerEmail)
+      .maybeSingle()
+
+    if (userError && userError.code !== 'PGRST116') {
+      throw userError
+    }
 
     if (!user) {
       return NextResponse.json({ ok: false, error: 'Usuario no encontrado.' }, { status: 404 })
     }
 
-    let foundation: DBFoundation | null = null
+    let foundation = null
     if (user.foundation_id) {
-      foundation = db
-        .prepare('SELECT * FROM foundations WHERE id = ?')
-        .get(user.foundation_id) as DBFoundation | null
+      const { data: foundationData, error: foundationError } = await supabase
+        .from('foundations')
+        .select('*')
+        .eq('id', user.foundation_id)
+        .maybeSingle()
+
+      if (foundationError && foundationError.code !== 'PGRST116') {
+        throw foundationError
+      }
+
+      foundation = foundationData
     }
 
     return NextResponse.json({
@@ -71,9 +88,18 @@ export async function PATCH(req: Request) {
       return NextResponse.json({ ok: false, error: 'Email es requerido.' }, { status: 400 })
     }
 
-    const user = db
-      .prepare('SELECT * FROM users WHERE email = ?')
-      .get(email.trim().toLowerCase()) as DBUser | undefined
+    const supabase = getSupabaseClient()
+    const lowerEmail = email.trim().toLowerCase()
+
+    const { data: user, error: userError } = await supabase
+      .from('users')
+      .select('*')
+      .eq('email', lowerEmail)
+      .maybeSingle()
+
+    if (userError && userError.code !== 'PGRST116') {
+      throw userError
+    }
 
     if (!user) {
       return NextResponse.json({ ok: false, error: 'Usuario no encontrado.' }, { status: 404 })
@@ -86,85 +112,84 @@ export async function PATCH(req: Request) {
       if (user.password_hash !== hash(body.current_password)) {
         return NextResponse.json({ ok: false, error: 'Contraseña actual incorrecta.' }, { status: 401 })
       }
-      db.prepare('UPDATE users SET password_hash = ? WHERE id = ?').run(
-        hash(body.new_password),
-        user.id,
-      )
+
+      const { error: updatePasswordError } = await supabase
+        .from('users')
+        .update({ password_hash: hash(body.new_password) })
+        .eq('id', user.id)
+
+      if (updatePasswordError) {
+        throw updatePasswordError
+      }
     }
 
-    const userFields: string[] = []
-    const userValues: unknown[] = []
+    const userUpdate: Record<string, unknown> = {}
+    if (body.name !== undefined) userUpdate.name = body.name.trim()
+    if (body.avatar !== undefined) userUpdate.avatar = body.avatar || null
 
-    if (body.name !== undefined) {
-      userFields.push('name = ?')
-      userValues.push(body.name.trim())
-    }
-    if (body.avatar !== undefined) {
-      userFields.push('avatar = ?')
-      userValues.push(body.avatar || null)
-    }
+    if (Object.keys(userUpdate).length > 0) {
+      const { error: userUpdateError } = await supabase
+        .from('users')
+        .update(userUpdate)
+        .eq('id', user.id)
 
-    if (userFields.length > 0) {
-      userValues.push(user.id)
-      db.prepare(`UPDATE users SET ${userFields.join(', ')} WHERE id = ?`).run(...userValues)
+      if (userUpdateError) throw userUpdateError
     }
 
     if (user.role === 'fundacion' && user.foundation_id) {
-      const fFields: string[] = []
-      const fValues: unknown[] = []
+      const foundationUpdate: Record<string, unknown> = {}
+      if (body.name_foundation !== undefined) foundationUpdate.name = body.name_foundation.trim()
+      if (body.description !== undefined) foundationUpdate.description = body.description || null
+      if (body.location !== undefined) foundationUpdate.location = body.location || null
+      if (body.email_foundation !== undefined) foundationUpdate.email = body.email_foundation || null
+      if (body.phone !== undefined) foundationUpdate.phone = body.phone || null
+      if (body.logo_url !== undefined) foundationUpdate.logo_url = body.logo_url || null
+      if (body.available_slots !== undefined) foundationUpdate.available_slots = body.available_slots || null
 
-      if (body.name_foundation !== undefined) {
-        fFields.push('name = ?')
-        fValues.push(body.name_foundation.trim())
-      }
-      if (body.description !== undefined) {
-        fFields.push('description = ?')
-        fValues.push(body.description || null)
-      }
-      if (body.location !== undefined) {
-        fFields.push('location = ?')
-        fValues.push(body.location || null)
-      }
-      if (body.email_foundation !== undefined) {
-        fFields.push('email = ?')
-        fValues.push(body.email_foundation || null)
-      }
-      if (body.phone !== undefined) {
-        fFields.push('phone = ?')
-        fValues.push(body.phone || null)
-      }
-      if (body.logo_url !== undefined) {
-        fFields.push('logo_url = ?')
-        fValues.push(body.logo_url || null)
-      }
-      if (body.available_slots !== undefined) {
-        fFields.push('available_slots = ?')
-        fValues.push(body.available_slots || null)
-      }
+      if (Object.keys(foundationUpdate).length > 0) {
+        const { error: foundationUpdateError } = await supabase
+          .from('foundations')
+          .update(foundationUpdate)
+          .eq('id', user.foundation_id)
 
-      if (fFields.length > 0) {
-        fValues.push(user.foundation_id)
-        db.prepare(`UPDATE foundations SET ${fFields.join(', ')} WHERE id = ?`).run(...fValues)
+        if (foundationUpdateError) throw foundationUpdateError
       }
     }
 
-    const updatedUser = db.prepare('SELECT * FROM users WHERE id = ?').get(user.id) as DBUser
-    let foundation: DBFoundation | null = null
-    if (updatedUser.foundation_id) {
-      foundation = db
-        .prepare('SELECT * FROM foundations WHERE id = ?')
-        .get(updatedUser.foundation_id) as DBFoundation | null
+    const { data: updatedUser, error: updatedUserError } = await supabase
+      .from('users')
+      .select('*')
+      .eq('id', user.id)
+      .maybeSingle()
+
+    if (updatedUserError && updatedUserError.code !== 'PGRST116') {
+      throw updatedUserError
+    }
+
+    let foundation = null
+    if (updatedUser?.foundation_id) {
+      const { data: foundationData, error: foundationError } = await supabase
+        .from('foundations')
+        .select('*')
+        .eq('id', updatedUser.foundation_id)
+        .maybeSingle()
+
+      if (foundationError && foundationError.code !== 'PGRST116') {
+        throw foundationError
+      }
+
+      foundation = foundationData
     }
 
     return NextResponse.json({
       ok: true,
       user: {
-        id: updatedUser.id,
-        name: updatedUser.name,
-        email: updatedUser.email,
-        role: updatedUser.role,
-        avatar: updatedUser.avatar,
-        created_at: updatedUser.created_at,
+        id: updatedUser!.id,
+        name: updatedUser!.name,
+        email: updatedUser!.email,
+        role: updatedUser!.role,
+        avatar: updatedUser!.avatar,
+        created_at: updatedUser!.created_at,
         foundation,
       },
     })

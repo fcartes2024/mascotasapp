@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import db, { type DBPet, type DBUser } from '@/lib/db'
+import { getSupabaseClient } from '@/lib/supabase'
 
 function parseJSON<T>(raw: string | null): T | null {
   if (!raw) return null
@@ -22,74 +22,64 @@ export async function GET(req: Request) {
     const breed = searchParams.get('breed')
     const publisherEmail = searchParams.get('publisher_email')
 
-    const where: string[] = []
-    const params: unknown[] = []
+    const supabase = getSupabaseClient()
+    let query = supabase.from('pets').select('*')
 
-    if (type) {
-      where.push('type = ?')
-      params.push(type)
-    }
-    if (gender) {
-      where.push('gender = ?')
-      params.push(gender)
-    }
-    if (vaccinated === '0' || vaccinated === '1') {
-      where.push('vaccinated = ?')
-      params.push(Number(vaccinated))
-    }
-    if (sterilized === '0' || sterilized === '1') {
-      where.push('sterilized = ?')
-      params.push(Number(sterilized))
-    }
+    if (type) query = query.eq('type', type)
+    if (gender) query = query.eq('gender', gender)
+    if (vaccinated === '0' || vaccinated === '1') query = query.eq('vaccinated', Number(vaccinated))
+    if (sterilized === '0' || sterilized === '1') query = query.eq('sterilized', Number(sterilized))
+    if (energy) query = query.eq('energy', energy)
+    if (location) query = query.ilike('location', `%${location}%`)
+    if (breed) query = query.ilike('breed', `%${breed}%`)
+
     if (publisherEmail) {
-      const publisher = db
-        .prepare('SELECT * FROM users WHERE email = ?')
-        .get(publisherEmail.trim().toLowerCase()) as DBUser | undefined
+      const { data: publisher, error: publisherError } = await supabase
+        .from('users')
+        .select('*')
+        .eq('email', publisherEmail.trim().toLowerCase())
+        .maybeSingle()
+
+      if (publisherError && publisherError.code !== 'PGRST116') {
+        throw publisherError
+      }
+
       if (publisher?.foundation_id) {
-        where.push('foundation_id = ?')
-        params.push(publisher.foundation_id)
+        query = query.eq('foundation_id', publisher.foundation_id)
       } else if (publisher) {
-        where.push('published_by = ?')
-        params.push(publisher.id)
+        query = query.eq('published_by', publisher.id)
       }
     }
-    if (energy) {
-      where.push('energy = ?')
-      params.push(energy)
-    }
-    if (location) {
-      where.push('location LIKE ?')
-      params.push(`%${location}%`)
-    }
-    if (breed) {
-      where.push('breed LIKE ?')
-      params.push(`%${breed}%`)
+
+    query = query.order('created_at', { ascending: false })
+
+    const { data: rows, error } = await query
+
+    if (error) {
+      throw error
     }
 
-    const sql = `SELECT * FROM pets ${where.length > 0 ? 'WHERE ' + where.join(' AND ') : ''} ORDER BY created_at DESC`
-    const rows = db.prepare(sql).all(...params) as DBPet[]
-
-    const pets = rows.map((p) => ({
-      id: p.id,
-      name: p.name,
-      type: p.type,
-      breed: p.breed,
-      age: p.age,
-      gender: p.gender,
-      weight: p.weight,
-      location: p.location,
-      image: p.image,
-      adoption_state: (p as any).adoption_state ?? 'en_adopcion',
-      tone: p.tone,
-      vaccinated: Boolean(p.vaccinated),
-      sterilized: Boolean(p.sterilized),
-      personality: parseJSON<string[]>(p.personality) ?? [],
-      about: p.about,
-      good_with: parseJSON<string[]>(p.good_with) ?? [],
-      energy: p.energy,
-      foundation_id: p.foundation_id,
-      published_by: p.published_by,
-      created_at: p.created_at,
+    const pets = (rows ?? []).map((pet) => ({
+      id: pet.id,
+      name: pet.name,
+      type: pet.type,
+      breed: pet.breed,
+      age: pet.age,
+      gender: pet.gender,
+      weight: pet.weight,
+      location: pet.location,
+      image: pet.image,
+      adoption_state: pet.adoption_state ?? 'en_adopcion',
+      tone: pet.tone,
+      vaccinated: Boolean(pet.vaccinated),
+      sterilized: Boolean(pet.sterilized),
+      personality: parseJSON<string[]>(pet.personality) ?? [],
+      about: pet.about,
+      good_with: parseJSON<string[]>(pet.good_with) ?? [],
+      energy: pet.energy,
+      foundation_id: pet.foundation_id,
+      published_by: pet.published_by,
+      created_at: pet.created_at,
     }))
 
     return NextResponse.json({ ok: true, pets })
@@ -129,9 +119,18 @@ export async function POST(req: Request) {
       )
     }
 
-    const user = db
-      .prepare('SELECT * FROM users WHERE email = ?')
-      .get(publisher_email.trim().toLowerCase()) as DBUser | undefined
+    const supabase = getSupabaseClient()
+    const lowerEmail = publisher_email.trim().toLowerCase()
+
+    const { data: user, error: userError } = await supabase
+      .from('users')
+      .select('*')
+      .eq('email', lowerEmail)
+      .maybeSingle()
+
+    if (userError && userError.code !== 'PGRST116') {
+      throw userError
+    }
 
     if (!user) {
       return NextResponse.json({ ok: false, error: 'Usuario no encontrado.' }, { status: 404 })
@@ -144,36 +143,36 @@ export async function POST(req: Request) {
       )
     }
 
-    const insert = db.prepare(
-      `INSERT INTO pets (
-        name, type, breed, age, gender, weight, location, image, tone,
-        vaccinated, sterilized, personality, about, good_with, energy,
-        foundation_id, published_by
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-    )
+    const { data: pet, error: insertError } = await supabase
+      .from('pets')
+      .insert([
+        {
+          name: name.trim(),
+          type,
+          breed: body.breed?.trim() || null,
+          age: age.trim(),
+          gender: body.gender || null,
+          weight: body.weight?.trim() || null,
+          location: location.trim(),
+          image,
+          tone: body.tone?.trim() || '',
+          vaccinated: body.vaccinated ?? 0,
+          sterilized: body.sterilized ?? 0,
+          personality: body.personality ? JSON.stringify(body.personality) : null,
+          about: body.about?.trim() || null,
+          good_with: body.good_with ? JSON.stringify(body.good_with) : null,
+          energy: body.energy || null,
+          foundation_id: user.foundation_id,
+          published_by: user.id,
+          adoption_state: 'en_adopcion',
+        },
+      ])
+      .select('*')
+      .single()
 
-    const result = insert.run(
-      name.trim(),
-      type,
-      body.breed?.trim() || null,
-      age.trim(),
-      body.gender || null,
-      body.weight?.trim() || null,
-      location.trim(),
-      image,
-      body.tone?.trim() || '',
-      body.vaccinated ?? 0,
-      body.sterilized ?? 0,
-      body.personality ? JSON.stringify(body.personality) : null,
-      body.about?.trim() || null,
-      body.good_with ? JSON.stringify(body.good_with) : null,
-      body.energy || null,
-      user.foundation_id,
-      user.id,
-    )
-
-    const petId = Number(result.lastInsertRowid)
-    const pet = db.prepare('SELECT * FROM pets WHERE id = ?').get(petId) as DBPet
+    if (insertError) {
+      throw insertError
+    }
 
     return NextResponse.json({
       ok: true,
@@ -187,7 +186,7 @@ export async function POST(req: Request) {
         weight: pet.weight,
         location: pet.location,
         image: pet.image,
-        adoption_state: (pet as any).adoption_state ?? 'en_adopcion',
+        adoption_state: pet.adoption_state ?? 'en_adopcion',
         tone: pet.tone,
         vaccinated: Boolean(pet.vaccinated),
         sterilized: Boolean(pet.sterilized),

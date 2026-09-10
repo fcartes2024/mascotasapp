@@ -1,36 +1,9 @@
 import { NextResponse } from 'next/server'
-import db, { type DBUser, type DBFoundation, type DBPet, type DBAdoptionRequest } from '@/lib/db'
-
-function parseJSON<T>(raw: string | null): T | null {
-  if (!raw) return null
-  try {
-    return JSON.parse(raw) as T
-  } catch {
-    return null
-  }
-}
+import { getSupabaseClient } from '@/lib/supabase'
 
 const VALID_STATUSES = ['pendiente', 'aprobada', 'rechazada', 'completada'] as const
-type ValidStatus = (typeof VALID_STATUSES)[number]
 
-type RequestRow = DBAdoptionRequest & {
-  user_id_req: number
-  pet_id_req: number
-  status_req: string
-  message_req: string | null
-  scheduled_date_req: string | null
-  request_created_at: string
-  user_name: string
-  user_email: string
-  pet_name: string
-  pet_type: string
-  pet_image: string
-  pet_location: string
-  foundation_id: number
-  foundation_name: string
-  user_id: number
-  pet_id: number
-}
+type ValidStatus = (typeof VALID_STATUSES)[number]
 
 export async function PATCH(
   req: Request,
@@ -70,25 +43,45 @@ export async function PATCH(
       )
     }
 
-    const actor = db
-      .prepare('SELECT * FROM users WHERE email = ?')
-      .get(action_by_email.trim().toLowerCase()) as DBUser | undefined
+    const supabase = getSupabaseClient()
+
+    const { data: actor, error: actorError } = await supabase
+      .from('users')
+      .select('*')
+      .eq('email', action_by_email.trim().toLowerCase())
+      .maybeSingle()
+
+    if (actorError && actorError.code !== 'PGRST116') {
+      throw actorError
+    }
 
     if (!actor) {
       return NextResponse.json({ ok: false, error: 'Usuario no encontrado.' }, { status: 404 })
     }
 
-    const existingRequest = db
-      .prepare('SELECT * FROM adoption_requests WHERE id = ?')
-      .get(requestId) as DBAdoptionRequest | undefined
+    const { data: existingRequest, error: existingRequestError } = await supabase
+      .from('adoption_requests')
+      .select('*')
+      .eq('id', requestId)
+      .maybeSingle()
+
+    if (existingRequestError && existingRequestError.code !== 'PGRST116') {
+      throw existingRequestError
+    }
 
     if (!existingRequest) {
       return NextResponse.json({ ok: false, error: 'Solicitud no encontrada.' }, { status: 404 })
     }
 
-    const pet = db
-      .prepare('SELECT * FROM pets WHERE id = ?')
-      .get(existingRequest.pet_id) as DBPet | undefined
+    const { data: pet, error: petError } = await supabase
+      .from('pets')
+      .select('*')
+      .eq('id', existingRequest.pet_id)
+      .maybeSingle()
+
+    if (petError && petError.code !== 'PGRST116') {
+      throw petError
+    }
 
     if (!pet) {
       return NextResponse.json({ ok: false, error: 'Mascota no encontrada.' }, { status: 404 })
@@ -109,79 +102,54 @@ export async function PATCH(
       )
     }
 
-    const updateFields: string[] = []
-    const updateParams: Array<string | number | null> = []
-
-    updateFields.push('status = ?')
-    updateParams.push(status)
-
-    if (message !== undefined) {
-      updateFields.push('message = ?')
-      updateParams.push(message || null)
+    const update: Record<string, unknown> = {
+      status,
+      message: message !== undefined ? message || null : existingRequest.message,
+      scheduled_date: scheduled_date !== undefined ? scheduled_date || null : existingRequest.scheduled_date,
     }
 
-    if (scheduled_date !== undefined) {
-      updateFields.push('scheduled_date = ?')
-      updateParams.push(scheduled_date || null)
+    const { data: updatedRequest, error: updateError } = await supabase
+      .from('adoption_requests')
+      .update(update)
+      .eq('id', requestId)
+      .select('*')
+      .single()
+
+    if (updateError) {
+      throw updateError
     }
 
-    updateParams.push(requestId)
+    const { data: userData } = await supabase
+      .from('users')
+      .select('id, name, email')
+      .eq('id', updatedRequest.user_id)
+      .maybeSingle()
 
-    db.prepare(
-      `UPDATE adoption_requests SET ${updateFields.join(', ')} WHERE id = ?`,
-    ).run(...updateParams)
-
-    const updatedRow = db
-      .prepare(
-        `
-        SELECT
-          r.id AS request_id,
-          r.user_id AS user_id_req,
-          r.pet_id AS pet_id_req,
-          r.status AS status_req,
-          r.message AS message_req,
-          r.scheduled_date AS scheduled_date_req,
-          r.created_at AS request_created_at,
-          u.id AS user_id,
-          u.name AS user_name,
-          u.email AS user_email,
-          p.id AS pet_id,
-          p.name AS pet_name,
-          p.type AS pet_type,
-          p.image AS pet_image,
-          p.location AS pet_location,
-          f.id AS foundation_id,
-          f.name AS foundation_name
-        FROM adoption_requests r
-        INNER JOIN users u ON r.user_id = u.id
-        INNER JOIN pets p ON r.pet_id = p.id
-        INNER JOIN foundations f ON p.foundation_id = f.id
-        WHERE r.id = ?
-      `,
-      )
-      .get(requestId) as RequestRow
+    const { data: foundationData } = pet.foundation_id
+      ? await supabase.from('foundations').select('id, name').eq('id', pet.foundation_id).maybeSingle()
+      : { data: null }
 
     const request = {
-      id: updatedRow.request_id,
-      status: updatedRow.status_req as DBAdoptionRequest['status'],
-      message: updatedRow.message_req,
-      scheduled_date: updatedRow.scheduled_date_req,
-      created_at: updatedRow.request_created_at,
+      id: updatedRequest.id,
+      status: updatedRequest.status,
+      message: updatedRequest.message,
+      scheduled_date: updatedRequest.scheduled_date,
+      created_at: updatedRequest.created_at,
       user: {
-        id: updatedRow.user_id,
-        name: updatedRow.user_name,
-        email: updatedRow.user_email,
+        id: userData?.id ?? updatedRequest.user_id,
+        name: userData?.name ?? '',
+        email: userData?.email ?? '',
       },
       pet: {
-        id: updatedRow.pet_id,
-        name: updatedRow.pet_name,
-        type: updatedRow.pet_type,
-        image: updatedRow.pet_image,
-        location: updatedRow.pet_location,
+        id: pet.id,
+        name: pet.name,
+        type: pet.type,
+        image: pet.image,
+        location: pet.location,
       },
       foundation: {
-        id: updatedRow.foundation_id,
-        name: updatedRow.foundation_name,
+        id: foundationData?.id ?? pet.foundation_id ?? null,
+        name: foundationData?.name ?? '',
       },
     }
 

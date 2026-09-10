@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { createHash } from 'node:crypto'
-import db, { type DBUser } from '@/lib/db'
+import { getSupabaseClient } from '@/lib/supabase'
 
 function hash(pw: string) {
   return createHash('sha256').update(pw).digest('hex')
@@ -13,9 +13,18 @@ export async function POST(req: Request) {
       return NextResponse.json({ ok: false, error: 'Email y contraseña son requeridos.' }, { status: 400 })
     }
 
-    const user = db
-      .prepare('SELECT * FROM users WHERE email = ?')
-      .get(email.trim().toLowerCase()) as DBUser | undefined
+    const lowerEmail = email.trim().toLowerCase()
+    const supabase = getSupabaseClient()
+
+    const { data: user, error: userError } = await supabase
+      .from('users')
+      .select('*')
+      .eq('email', lowerEmail)
+      .maybeSingle()
+
+    if (userError && userError.code !== 'PGRST116') {
+      throw userError
+    }
 
     if (!user || user.password_hash !== hash(password)) {
       return NextResponse.json({ ok: false, error: 'Correo o contraseña incorrectos.' }, { status: 401 })
@@ -23,10 +32,17 @@ export async function POST(req: Request) {
 
     let foundationName: string | undefined
     if (user.foundation_id) {
-      const f = db
-        .prepare('SELECT name FROM foundations WHERE id = ?')
-        .get(user.foundation_id) as { name: string } | undefined
-      foundationName = f?.name
+      const { data: foundation, error: foundationError } = await supabase
+        .from('foundations')
+        .select('name')
+        .eq('id', user.foundation_id)
+        .maybeSingle()
+
+      if (foundationError && foundationError.code !== 'PGRST116') {
+        throw foundationError
+      }
+
+      foundationName = foundation?.name ?? undefined
     }
 
     return NextResponse.json({

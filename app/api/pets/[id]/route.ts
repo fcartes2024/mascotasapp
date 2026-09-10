@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import db, { type DBPet, type DBUser } from '@/lib/db'
+import { getSupabaseClient } from '@/lib/supabase'
 
 function parseJSON<T>(raw: string | null): T | null {
   if (!raw) return null
@@ -7,6 +7,31 @@ function parseJSON<T>(raw: string | null): T | null {
     return JSON.parse(raw) as T
   } catch {
     return null
+  }
+}
+
+function mapPet(pet: any) {
+  return {
+    id: pet.id,
+    name: pet.name,
+    type: pet.type,
+    breed: pet.breed,
+    age: pet.age,
+    gender: pet.gender,
+    weight: pet.weight,
+    location: pet.location,
+    image: pet.image,
+    adoption_state: pet.adoption_state ?? 'en_adopcion',
+    tone: pet.tone,
+    vaccinated: Boolean(pet.vaccinated),
+    sterilized: Boolean(pet.sterilized),
+    personality: parseJSON<string[]>(pet.personality) ?? [],
+    about: pet.about,
+    good_with: parseJSON<string[]>(pet.good_with) ?? [],
+    energy: pet.energy,
+    foundation_id: pet.foundation_id,
+    published_by: pet.published_by,
+    created_at: pet.created_at,
   }
 }
 
@@ -44,15 +69,31 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ id: st
       return NextResponse.json({ ok: false, error: 'editor_email es requerido.' }, { status: 400 })
     }
 
-    const editor = db
-      .prepare('SELECT * FROM users WHERE email = ?')
-      .get(editor_email.trim().toLowerCase()) as DBUser | undefined
+    const supabase = getSupabaseClient()
+
+    const { data: editor, error: editorError } = await supabase
+      .from('users')
+      .select('*')
+      .eq('email', editor_email.trim().toLowerCase())
+      .maybeSingle()
+
+    if (editorError && editorError.code !== 'PGRST116') {
+      throw editorError
+    }
 
     if (!editor) {
       return NextResponse.json({ ok: false, error: 'Editor no encontrado.' }, { status: 404 })
     }
 
-    const pet = db.prepare('SELECT * FROM pets WHERE id = ?').get(petId) as DBPet | undefined
+    const { data: pet, error: petError } = await supabase
+      .from('pets')
+      .select('*')
+      .eq('id', petId)
+      .maybeSingle()
+
+    if (petError && petError.code !== 'PGRST116') {
+      throw petError
+    }
 
     if (!pet) {
       return NextResponse.json({ ok: false, error: 'Mascota no encontrada.' }, { status: 404 })
@@ -68,105 +109,43 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ id: st
       )
     }
 
-    const fields: string[] = []
-    const values: unknown[] = []
+    const update: Record<string, unknown> = {}
 
-    if (body.name !== undefined) {
-      fields.push('name = ?')
-      values.push(body.name.trim())
-    }
-    if (body.type !== undefined) {
-      fields.push('type = ?')
-      values.push(body.type)
-    }
-    if (body.breed !== undefined) {
-      fields.push('breed = ?')
-      values.push(body.breed?.trim() || null)
-    }
-    if (body.age !== undefined) {
-      fields.push('age = ?')
-      values.push(body.age.trim())
-    }
-    if (body.gender !== undefined) {
-      fields.push('gender = ?')
-      values.push(body.gender || null)
-    }
-    if (body.weight !== undefined) {
-      fields.push('weight = ?')
-      values.push(body.weight?.trim() || null)
-    }
-    if (body.location !== undefined) {
-      fields.push('location = ?')
-      values.push(body.location.trim())
-    }
-    if (body.image !== undefined) {
-      fields.push('image = ?')
-      values.push(body.image)
-    }
-    if (body.adoption_state !== undefined) {
-      fields.push('adoption_state = ?')
-      values.push(body.adoption_state)
-    }
-    if (body.tone !== undefined) {
-      fields.push('tone = ?')
-      values.push(body.tone?.trim() || '')
-    }
-    if (body.vaccinated !== undefined) {
-      fields.push('vaccinated = ?')
-      values.push(Number(body.vaccinated))
-    }
-    if (body.sterilized !== undefined) {
-      fields.push('sterilized = ?')
-      values.push(Number(body.sterilized))
-    }
-    if (body.personality !== undefined) {
-      fields.push('personality = ?')
-      values.push(body.personality ? JSON.stringify(body.personality) : null)
-    }
-    if (body.about !== undefined) {
-      fields.push('about = ?')
-      values.push(body.about?.trim() || null)
-    }
-    if (body.good_with !== undefined) {
-      fields.push('good_with = ?')
-      values.push(body.good_with ? JSON.stringify(body.good_with) : null)
-    }
-    if (body.energy !== undefined) {
-      fields.push('energy = ?')
-      values.push(body.energy || null)
+    if (body.name !== undefined) update.name = body.name.trim()
+    if (body.type !== undefined) update.type = body.type
+    if (body.breed !== undefined) update.breed = body.breed?.trim() || null
+    if (body.age !== undefined) update.age = body.age.trim()
+    if (body.gender !== undefined) update.gender = body.gender || null
+    if (body.weight !== undefined) update.weight = body.weight?.trim() || null
+    if (body.location !== undefined) update.location = body.location.trim()
+    if (body.image !== undefined) update.image = body.image
+    if (body.adoption_state !== undefined) update.adoption_state = body.adoption_state
+    if (body.tone !== undefined) update.tone = body.tone?.trim() || ''
+    if (body.vaccinated !== undefined) update.vaccinated = Number(body.vaccinated)
+    if (body.sterilized !== undefined) update.sterilized = Number(body.sterilized)
+    if (body.personality !== undefined) update.personality = body.personality ? JSON.stringify(body.personality) : null
+    if (body.about !== undefined) update.about = body.about?.trim() || null
+    if (body.good_with !== undefined) update.good_with = body.good_with ? JSON.stringify(body.good_with) : null
+    if (body.energy !== undefined) update.energy = body.energy || null
+
+    if (Object.keys(update).length === 0) {
+      return NextResponse.json({ ok: true, pet: mapPet(pet) })
     }
 
-    if (fields.length > 0) {
-      values.push(petId)
-      db.prepare(`UPDATE pets SET ${fields.join(', ')} WHERE id = ?`).run(...values)
-    }
+    const { data: updatedPet, error: updateError } = await supabase
+      .from('pets')
+      .update(update)
+      .eq('id', petId)
+      .select('*')
+      .single()
 
-    const updatedPet = db.prepare('SELECT * FROM pets WHERE id = ?').get(petId) as DBPet
+    if (updateError) {
+      throw updateError
+    }
 
     return NextResponse.json({
       ok: true,
-      pet: {
-        id: updatedPet.id,
-        name: updatedPet.name,
-        type: updatedPet.type,
-        breed: updatedPet.breed,
-        age: updatedPet.age,
-        gender: updatedPet.gender,
-        weight: updatedPet.weight,
-        location: updatedPet.location,
-        image: updatedPet.image,
-        adoption_state: (updatedPet as any).adoption_state ?? 'en_adopcion',
-        tone: updatedPet.tone,
-        vaccinated: Boolean(updatedPet.vaccinated),
-        sterilized: Boolean(updatedPet.sterilized),
-        personality: parseJSON<string[]>(updatedPet.personality) ?? [],
-        about: updatedPet.about,
-        good_with: parseJSON<string[]>(updatedPet.good_with) ?? [],
-        energy: updatedPet.energy,
-        foundation_id: updatedPet.foundation_id,
-        published_by: updatedPet.published_by,
-        created_at: updatedPet.created_at,
-      },
+      pet: mapPet(updatedPet),
     })
   } catch (err) {
     console.error('[pets/[id] PATCH]', err)
@@ -189,15 +168,31 @@ export async function DELETE(req: Request, { params }: { params: Promise<{ id: s
       return NextResponse.json({ ok: false, error: 'editor_email es requerido.' }, { status: 400 })
     }
 
-    const editor = db
-      .prepare('SELECT * FROM users WHERE email = ?')
-      .get(editor_email.trim().toLowerCase()) as DBUser | undefined
+    const supabase = getSupabaseClient()
+
+    const { data: editor, error: editorError } = await supabase
+      .from('users')
+      .select('*')
+      .eq('email', editor_email.trim().toLowerCase())
+      .maybeSingle()
+
+    if (editorError && editorError.code !== 'PGRST116') {
+      throw editorError
+    }
 
     if (!editor) {
       return NextResponse.json({ ok: false, error: 'Editor no encontrado.' }, { status: 404 })
     }
 
-    const pet = db.prepare('SELECT * FROM pets WHERE id = ?').get(petId) as DBPet | undefined
+    const { data: pet, error: petError } = await supabase
+      .from('pets')
+      .select('*')
+      .eq('id', petId)
+      .maybeSingle()
+
+    if (petError && petError.code !== 'PGRST116') {
+      throw petError
+    }
 
     if (!pet) {
       return NextResponse.json({ ok: false, error: 'Mascota no encontrada.' }, { status: 404 })
@@ -213,7 +208,14 @@ export async function DELETE(req: Request, { params }: { params: Promise<{ id: s
       )
     }
 
-    db.prepare('DELETE FROM pets WHERE id = ?').run(petId)
+    const { error: deleteError } = await supabase
+      .from('pets')
+      .delete()
+      .eq('id', petId)
+
+    if (deleteError) {
+      throw deleteError
+    }
 
     return NextResponse.json({ ok: true, message: 'Mascota eliminada correctamente.' })
   } catch (err) {

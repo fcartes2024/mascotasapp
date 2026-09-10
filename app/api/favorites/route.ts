@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import db, { type DBUser, type DBPet, type DBFavorite } from '@/lib/db'
+import { getSupabaseClient } from '@/lib/supabase'
 
 function parseJSON<T>(raw: string | null): T | null {
   if (!raw) return null
@@ -19,49 +19,75 @@ export async function GET(req: Request) {
       return NextResponse.json({ ok: false, error: 'user_email es requerido.' }, { status: 400 })
     }
 
-    const user = db
-      .prepare('SELECT * FROM users WHERE email = ?')
-      .get(userEmail.trim().toLowerCase()) as DBUser | undefined
+    const supabase = getSupabaseClient()
+    const lowerEmail = userEmail.trim().toLowerCase()
+
+    const { data: user, error: userError } = await supabase
+      .from('users')
+      .select('id')
+      .eq('email', lowerEmail)
+      .maybeSingle()
+
+    if (userError && userError.code !== 'PGRST116') {
+      throw userError
+    }
 
     if (!user) {
       return NextResponse.json({ ok: false, error: 'Usuario no encontrado.' }, { status: 404 })
     }
 
-    const rows = db
-      .prepare(
-        `SELECT f.*, p.* FROM favorites f
-         INNER JOIN pets p ON f.pet_id = p.id
-         WHERE f.user_id = ?
-         ORDER BY f.created_at DESC`,
-      )
-      .all(user.id) as Array<DBFavorite & DBPet>
+    const { data: favoriteRows, error: favoritesError } = await supabase
+      .from('favorites')
+      .select('id, pet_id, created_at')
+      .eq('user_id', user.id)
+      .order('created_at', { ascending: false })
 
-    const favorites = rows.map((r) => ({
-      id: r.id,
-      pet_id: r.pet_id,
-      created_at: r.created_at,
-      pet: {
-        id: r.pet_id,
-        name: r.name,
-        type: r.type,
-        breed: r.breed,
-        age: r.age,
-        gender: r.gender,
-        weight: r.weight,
-        location: r.location,
-        image: r.image,
-        tone: r.tone,
-        vaccinated: Boolean(r.vaccinated),
-        sterilized: Boolean(r.sterilized),
-        personality: parseJSON<string[]>(r.personality) ?? [],
-        about: r.about,
-        good_with: parseJSON<string[]>(r.good_with) ?? [],
-        energy: r.energy,
-        foundation_id: r.foundation_id,
-        published_by: r.published_by,
-        created_at: r.created_at,
-      },
-    }))
+    if (favoritesError) {
+      throw favoritesError
+    }
+
+    const petIds = (favoriteRows ?? []).map((item) => item.pet_id)
+    const { data: pets, error: petsError } = petIds.length
+      ? await supabase.from('pets').select('*').in('id', petIds)
+      : { data: [], error: null }
+
+    if (petsError) {
+      throw petsError
+    }
+
+    const petMap = new Map((pets ?? []).map((pet) => [pet.id, pet]))
+
+    const favorites = (favoriteRows ?? []).map((favorite) => {
+      const pet = petMap.get(favorite.pet_id)
+      return {
+        id: favorite.id,
+        pet_id: favorite.pet_id,
+        created_at: favorite.created_at,
+        pet: pet
+          ? {
+              id: pet.id,
+              name: pet.name,
+              type: pet.type,
+              breed: pet.breed,
+              age: pet.age,
+              gender: pet.gender,
+              weight: pet.weight,
+              location: pet.location,
+              image: pet.image,
+              tone: pet.tone,
+              vaccinated: Boolean(pet.vaccinated),
+              sterilized: Boolean(pet.sterilized),
+              personality: parseJSON<string[]>(pet.personality) ?? [],
+              about: pet.about,
+              good_with: parseJSON<string[]>(pet.good_with) ?? [],
+              energy: pet.energy,
+              foundation_id: pet.foundation_id,
+              published_by: pet.published_by,
+              created_at: pet.created_at,
+            }
+          : null,
+      }
+    })
 
     return NextResponse.json({ ok: true, favorites })
   } catch (err) {
@@ -84,25 +110,47 @@ export async function POST(req: Request) {
       )
     }
 
-    const user = db
-      .prepare('SELECT * FROM users WHERE email = ?')
-      .get(user_email.trim().toLowerCase()) as DBUser | undefined
+    const supabase = getSupabaseClient()
+    const lowerEmail = user_email.trim().toLowerCase()
+
+    const { data: user, error: userError } = await supabase
+      .from('users')
+      .select('id')
+      .eq('email', lowerEmail)
+      .maybeSingle()
+
+    if (userError && userError.code !== 'PGRST116') {
+      throw userError
+    }
 
     if (!user) {
       return NextResponse.json({ ok: false, error: 'Usuario no encontrado.' }, { status: 404 })
     }
 
-    const pet = db.prepare('SELECT id FROM pets WHERE id = ?').get(pet_id) as
-      | { id: number }
-      | undefined
+    const { data: pet, error: petError } = await supabase
+      .from('pets')
+      .select('id')
+      .eq('id', pet_id)
+      .maybeSingle()
+
+    if (petError && petError.code !== 'PGRST116') {
+      throw petError
+    }
 
     if (!pet) {
       return NextResponse.json({ ok: false, error: 'Mascota no encontrada.' }, { status: 404 })
     }
 
-    const existing = db
-      .prepare('SELECT id FROM favorites WHERE user_id = ? AND pet_id = ?')
-      .get(user.id, pet_id)
+    const { data: existing, error: existingError } = await supabase
+      .from('favorites')
+      .select('id')
+      .eq('user_id', user.id)
+      .eq('pet_id', pet_id)
+      .maybeSingle()
+
+    if (existingError && existingError.code !== 'PGRST116') {
+      throw existingError
+    }
 
     if (existing) {
       return NextResponse.json(
@@ -111,13 +159,15 @@ export async function POST(req: Request) {
       )
     }
 
-    const result = db
-      .prepare('INSERT INTO favorites (user_id, pet_id) VALUES (?, ?)')
-      .run(user.id, pet_id)
+    const { data: favorite, error: insertError } = await supabase
+      .from('favorites')
+      .insert([{ user_id: user.id, pet_id }])
+      .select('id, user_id, pet_id, created_at')
+      .single()
 
-    const favorite = db
-      .prepare('SELECT * FROM favorites WHERE id = ?')
-      .get(result.lastInsertRowid) as DBFavorite
+    if (insertError) {
+      throw insertError
+    }
 
     return NextResponse.json({ ok: true, favorite })
   } catch (err) {
@@ -140,15 +190,32 @@ export async function DELETE(req: Request) {
       )
     }
 
-    const user = db
-      .prepare('SELECT * FROM users WHERE email = ?')
-      .get(user_email.trim().toLowerCase()) as DBUser | undefined
+    const supabase = getSupabaseClient()
+    const lowerEmail = user_email.trim().toLowerCase()
+
+    const { data: user, error: userError } = await supabase
+      .from('users')
+      .select('id')
+      .eq('email', lowerEmail)
+      .maybeSingle()
+
+    if (userError && userError.code !== 'PGRST116') {
+      throw userError
+    }
 
     if (!user) {
       return NextResponse.json({ ok: false, error: 'Usuario no encontrado.' }, { status: 404 })
     }
 
-    db.prepare('DELETE FROM favorites WHERE user_id = ? AND pet_id = ?').run(user.id, pet_id)
+    const { error: deleteError } = await supabase
+      .from('favorites')
+      .delete()
+      .eq('user_id', user.id)
+      .eq('pet_id', pet_id)
+
+    if (deleteError) {
+      throw deleteError
+    }
 
     return NextResponse.json({ ok: true, removed: true })
   } catch (err) {

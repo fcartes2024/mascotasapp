@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import db, { type DBUser } from '@/lib/db'
+import { getSupabaseClient } from '@/lib/supabase'
 
 type ReportType = 'pets' | 'requests' | 'users' | 'foundations'
 
@@ -39,9 +39,17 @@ export async function GET(req: Request) {
       )
     }
 
-    const admin = db
-      .prepare('SELECT * FROM users WHERE email = ?')
-      .get(admin_email.trim().toLowerCase()) as DBUser | undefined
+    const supabase = getSupabaseClient()
+
+    const { data: admin, error: adminError } = await supabase
+      .from('users')
+      .select('*')
+      .eq('email', admin_email.trim().toLowerCase())
+      .maybeSingle()
+
+    if (adminError && adminError.code !== 'PGRST116') {
+      throw adminError
+    }
 
     if (!admin) {
       return NextResponse.json({ ok: false, error: 'Admin no encontrado.' }, { status: 404 })
@@ -61,43 +69,36 @@ export async function GET(req: Request) {
       ]
       rows.push(headers.map(escapeCSV).join(','))
 
-      const pets = db
-        .prepare(
-          `SELECT p.*, f.name as foundation_name
-           FROM pets p
-           LEFT JOIN foundations f ON p.foundation_id = f.id
-           ORDER BY p.created_at DESC`,
-        )
-        .all() as Array<{
-          id: number
-          name: string
-          type: string
-          breed: string | null
-          age: string
-          weight: string | null
-          location: string
-          foundation_name: string | null
-          vaccinated: number
-          sterilized: number
-          energy: string | null
-          created_at: string
-        }>
+      const { data: pets, error: petsError } = await supabase
+        .from('pets')
+        .select('*')
+        .order('created_at', { ascending: false })
 
-      for (const p of pets) {
+      if (petsError) {
+        throw petsError
+      }
+
+      const { data: foundations } = await supabase
+        .from('foundations')
+        .select('id, name')
+
+      const foundationMap = new Map((foundations ?? []).map((item) => [item.id, item.name]))
+
+      for (const pet of pets ?? []) {
         rows.push(
           [
-            p.id,
-            p.name,
-            p.type,
-            p.breed || '',
-            p.age,
-            p.weight || '',
-            p.location,
-            p.foundation_name || '',
-            p.vaccinated ? 'Sí' : 'No',
-            p.sterilized ? 'Sí' : 'No',
-            p.energy || '',
-            p.created_at,
+            pet.id,
+            pet.name,
+            pet.type,
+            pet.breed || '',
+            pet.age,
+            pet.weight || '',
+            pet.location,
+            foundationMap.get(pet.foundation_id) || '',
+            pet.vaccinated ? 'Sí' : 'No',
+            pet.sterilized ? 'Sí' : 'No',
+            pet.energy || '',
+            pet.created_at,
           ]
             .map(escapeCSV)
             .join(','),
@@ -110,37 +111,46 @@ export async function GET(req: Request) {
       ]
       rows.push(headers.map(escapeCSV).join(','))
 
-      const requests = db
-        .prepare(
-          `SELECT ar.*, p.name as pet_name, u.email as user_email, f.name as foundation_name
-           FROM adoption_requests ar
-           LEFT JOIN pets p ON ar.pet_id = p.id
-           LEFT JOIN users u ON ar.user_id = u.id
-           LEFT JOIN foundations f ON p.foundation_id = f.id
-           ORDER BY ar.created_at DESC`,
-        )
-        .all() as Array<{
-          id: number
-          pet_name: string | null
-          user_email: string | null
-          foundation_name: string | null
-          status: string
-          message: string | null
-          scheduled_date: string | null
-          created_at: string
-        }>
+      const { data: requests, error: requestsError } = await supabase
+        .from('adoption_requests')
+        .select('*')
+        .order('created_at', { ascending: false })
 
-      for (const r of requests) {
+      if (requestsError) {
+        throw requestsError
+      }
+
+      const userIds = [...new Set((requests ?? []).map((request) => request.user_id))]
+      const petIds = [...new Set((requests ?? []).map((request) => request.pet_id))]
+
+      const { data: usersData } = userIds.length
+        ? await supabase.from('users').select('id, email').in('id', userIds)
+        : { data: [] }
+
+      const { data: petsData } = petIds.length
+        ? await supabase.from('pets').select('id, name, foundation_id').in('id', petIds)
+        : { data: [] }
+
+      const { data: foundationsData } = petIds.length
+        ? await supabase.from('foundations').select('id, name').in('id', (petsData ?? []).map((pet) => pet.foundation_id).filter(Boolean))
+        : { data: [] }
+
+      const userMap = new Map((usersData ?? []).map((item) => [item.id, item.email]))
+      const petMap = new Map((petsData ?? []).map((item) => [item.id, item]))
+      const foundationMap = new Map((foundationsData ?? []).map((item) => [item.id, item.name]))
+
+      for (const request of requests ?? []) {
+        const pet = petMap.get(request.pet_id)
         rows.push(
           [
-            r.id,
-            r.pet_name || '',
-            r.user_email || '',
-            r.foundation_name || '',
-            r.status,
-            r.message || '',
-            r.scheduled_date || '',
-            r.created_at,
+            request.id,
+            pet?.name || '',
+            userMap.get(request.user_id) || '',
+            pet ? foundationMap.get(pet.foundation_id) || '' : '',
+            request.status,
+            request.message || '',
+            request.scheduled_date || '',
+            request.created_at,
           ]
             .map(escapeCSV)
             .join(','),
@@ -150,31 +160,31 @@ export async function GET(req: Request) {
       const headers = ['id', 'nombre', 'email', 'rol', 'fundacion', 'fecha_registro']
       rows.push(headers.map(escapeCSV).join(','))
 
-      const users = db
-        .prepare(
-          `SELECT u.*, f.name as foundation_name
-           FROM users u
-           LEFT JOIN foundations f ON u.foundation_id = f.id
-           ORDER BY u.created_at DESC`,
-        )
-        .all() as Array<{
-          id: number
-          name: string
-          email: string
-          role: string
-          foundation_name: string | null
-          created_at: string
-        }>
+      const { data: users, error: usersError } = await supabase
+        .from('users')
+        .select('*')
+        .order('created_at', { ascending: false })
 
-      for (const u of users) {
+      if (usersError) {
+        throw usersError
+      }
+
+      const foundationIds = [...new Set((users ?? []).map((user) => user.foundation_id).filter(Boolean))]
+      const { data: foundations } = foundationIds.length
+        ? await supabase.from('foundations').select('id, name').in('id', foundationIds)
+        : { data: [] }
+
+      const foundationMap = new Map((foundations ?? []).map((item) => [item.id, item.name]))
+
+      for (const user of users ?? []) {
         rows.push(
           [
-            u.id,
-            u.name,
-            u.email,
-            u.role,
-            u.foundation_name || '',
-            u.created_at,
+            user.id,
+            user.name,
+            user.email,
+            user.role,
+            foundationMap.get(user.foundation_id) || '',
+            user.created_at,
           ]
             .map(escapeCSV)
             .join(','),
@@ -187,31 +197,30 @@ export async function GET(req: Request) {
       ]
       rows.push(headers.map(escapeCSV).join(','))
 
-      const foundations = db
-        .prepare('SELECT * FROM foundations ORDER BY created_at DESC')
-        .all() as Array<{
-          id: number
-          name: string
-          email: string | null
-          location: string | null
-          phone: string | null
-          created_at: string
-        }>
+      const { data: foundations, error: foundationsError } = await supabase
+        .from('foundations')
+        .select('*')
+        .order('created_at', { ascending: false })
 
-      for (const f of foundations) {
-        const petCount = db
-          .prepare('SELECT COUNT(*) as count FROM pets WHERE foundation_id = ?')
-          .get(f.id) as { count: number }
+      if (foundationsError) {
+        throw foundationsError
+      }
+
+      for (const foundation of foundations ?? []) {
+        const { data: petRows } = await supabase
+          .from('pets')
+          .select('id')
+          .eq('foundation_id', foundation.id)
 
         rows.push(
           [
-            f.id,
-            f.name,
-            f.email || '',
-            f.location || '',
-            f.phone || '',
-            f.created_at,
-            petCount.count,
+            foundation.id,
+            foundation.name,
+            foundation.email || '',
+            foundation.location || '',
+            foundation.phone || '',
+            foundation.created_at,
+            petRows?.length ?? 0,
           ]
             .map(escapeCSV)
             .join(','),
